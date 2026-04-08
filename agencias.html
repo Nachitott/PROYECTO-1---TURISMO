@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Conocé nuestras agencias de turismo verificadas. Perfiles interactivos, ratings y servicios especializados." />
+  <title>Agencias – Wanderlust Turismo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body class="page-agencias" data-theme="light">
+
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo" aria-label="Wanderlust – Inicio">
+        <svg width="32" height="32" class="logo-svg" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 4 C10 14, 10 26, 20 36 C30 26, 30 14, 20 4Z" fill="currentColor" opacity="0.3"/><line x1="4" y1="20" x2="36" y2="20" stroke="currentColor" stroke-width="2"/></svg>
+        <span class="logo-text">Wanderlust</span>
+      </a>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <ul class="nav-list" role="list">
+          <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+          <li class="nav-item has-megamenu"><a href="destinos.html" class="nav-link" aria-haspopup="true" aria-expanded="false">Destinos <svg width="32" height="32" class="chevron" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></a><div class="megamenu" role="region"><div class="megamenu-inner megamenu-inner--simple"><div class="megamenu-col"><ul role="list"><li><a href="destinos.html" class="megamenu-link">Ver todos</a></li></ul></div></div></div></li>
+          <li class="nav-item has-megamenu"><a href="agencias.html" class="nav-link nav-link--active" aria-current="page" aria-haspopup="true" aria-expanded="false">Agencias <svg width="32" height="32" class="chevron" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></a><div class="megamenu" role="region"><div class="megamenu-inner megamenu-inner--simple"><div class="megamenu-col"><ul role="list"><li><a href="agencias.html" class="megamenu-link">Todas las Agencias</a></li><li><a href="agencias.html" class="megamenu-link">Premium</a></li></ul></div></div></div></li>
+          <li class="nav-item has-megamenu"><a href="precios.html" class="nav-link" aria-haspopup="true" aria-expanded="false">Precios <svg width="32" height="32" class="chevron" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></a><div class="megamenu" role="region"><div class="megamenu-inner megamenu-inner--simple"><div class="megamenu-col"><ul role="list"><li><a href="precios.html" class="megamenu-link">Comparador</a></li></ul></div></div></div></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+          <li class="nav-item"><a href="contacto.html" class="nav-link nav-link--cta">Contacto</a></li>
+        </ul>
+      </nav>
+      <div class="header-controls">
+        <button class="btn-icon btn-darkmode" id="darkModeToggle" aria-label="Alternar modo oscuro"><svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+        <button class="btn-icon btn-hamburger" id="menuToggle" aria-label="Abrir menú" aria-controls="main-nav" aria-expanded="false"><span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <section class="page-hero" aria-label="Encabezado de agencias">
+      <div class="page-hero-content">
+        <p class="section-label">Aliados de confianza</p>
+        <h1 class="page-hero-title">Nuestras Agencias</h1>
+        <p class="page-hero-subtitle">Trabajamos con las mejores agencias de turismo del país. Verificadas, calificadas y listas para tu próximo viaje.</p>
+      </div>
+    </section>
+
+    <!--
+      ──────────────────────────────────────────────────────────
+      TARJETAS FLIP DE AGENCIAS
+      Técnica: CSS 3D Transform con perspective + rotateY.
+
+      Estructura de cada tarjeta:
+      .flip-card                → contenedor con perspective
+        .flip-card-inner        → el elemento que rota (transform-style: preserve-3d)
+          .flip-card-front      → cara delantera (z normal)
+          .flip-card-back       → cara trasera (rotateY(180deg) + backface-visibility: hidden)
+
+      Al hacer hover en .flip-card, el .flip-card-inner recibe
+      transform: rotateY(180deg) → la cara trasera queda al frente.
+
+      SISTEMA DE RATING CSS-ONLY:
+      Técnica: input[type="radio"] en orden inverso + CSS hermanos.
+      Los inputs van de 5 a 1 en el HTML, y con CSS ~
+      se colorean todas las estrellas anteriores al seleccionado.
+      ──────────────────────────────────────────────────────────
+    -->
+    <section class="section agencies-section" aria-labelledby="agencies-title">
+      <div class="section-inner">
+        <header class="section-header">
+          <h2 class="section-title" id="agencies-title">Perfiles de Agencias</h2>
+          <p class="section-subtitle">Pasá el cursor sobre cada tarjeta para ver más información.</p>
+        </header>
+
+        <div class="agencies-grid" role="list">
+
+          <!-- AGENCIA 1 -->
+          <div class="flip-card" role="listitem" tabindex="0" aria-label="Agencia Andes Explorer – ver detalles">
+            <div class="flip-card-inner">
+
+              <!-- CARA DELANTERA -->
+              <div class="flip-card-front">
+                <div class="agency-logo-placeholder" aria-hidden="true">
+                  <span>AE</span>
+                </div>
+                <h3 class="agency-name">Andes Explorer</h3>
+                <p class="agency-location">📍 Salta, Argentina</p>
+                <p class="agency-specialty">Especialidad: Aventura y Trekking</p>
+
+                <!--
+                  RATING CON ESTRELLAS CSS-ONLY:
+                  Los inputs van del 5 al 1 (orden inverso es clave para el truco CSS).
+                  Los labels muestran ★ y se colorean con CSS al hacer hover/checked.
+                  Aquí mostramos el rating ya dado (no interactivo), usando checked.
+                -->
+                <div class="star-rating star-rating--display" aria-label="Calificación: 4 de 5 estrellas">
+                  <span class="star star--filled" aria-hidden="true">★</span>
+                  <span class="star star--filled" aria-hidden="true">★</span>
+                  <span class="star star--filled" aria-hidden="true">★</span>
+                  <span class="star star--filled" aria-hidden="true">★</span>
+                  <span class="star" aria-hidden="true">★</span>
+                  <span class="rating-text">4.0 (128 reseñas)</span>
+                </div>
+
+                <p class="flip-hint" aria-hidden="true">↻ Pasá el cursor para más info</p>
+              </div>
+
+              <!-- CARA TRASERA -->
+              <div class="flip-card-back">
+                <h3 class="agency-name">Andes Explorer</h3>
+                <p class="agency-bio">
+                  Más de 15 años organizando expediciones en el norte argentino. 
+                  Especializados en trekking, ascensos y turismo aventura en los Andes.
+                </p>
+                <ul class="agency-services" role="list">
+                  <li>✓ Trekking Quebrada de Humahuaca</li>
+                  <li>✓ Expediciones a la Puna</li>
+                  <li>✓ Tours astronómicos</li>
+                  <li>✓ Grupos reducidos (máx. 12 personas)</li>
+                </ul>
+                <div class="agency-back-actions">
+                  <a href="contacto.html" class="btn btn--primary btn--sm">Contactar</a>
+                  <a href="#" class="btn btn--outline btn--sm">Ver paquetes</a>
+                </div>
+              </div>
+
+            </div><!-- /.flip-card-inner -->
+          </div><!-- /.flip-card -->
+
+          <!-- AGENCIA 2 -->
+          <div class="flip-card" role="listitem" tabindex="0" aria-label="Agencia Sur Patagónico – ver detalles">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <div class="agency-logo-placeholder agency-logo-placeholder--b" aria-hidden="true"><span>SP</span></div>
+                <h3 class="agency-name">Sur Patagónico</h3>
+                <p class="agency-location">📍 Bariloche, Río Negro</p>
+                <p class="agency-specialty">Especialidad: Lagos y Montañas</p>
+                <div class="star-rating star-rating--display" aria-label="Calificación: 5 de 5 estrellas">
+                  <span class="star star--filled" aria-hidden="true">★</span>
+                  <span class="star star--filled" aria-hidden="true">★</span>
+                  <span class="star star--filled" aria-hidden="true">★</span>
+                  <span class="star star--filled" aria-hidden="true">★</span>
+                  <span class="star star--filled" aria-hidden="true">★</span>
+                  <span class="rating-text">4.9 (312 reseñas)</span>
+                </div>
+                <p class="flip-hint" aria-hidden="true">↻ Pasá el cursor para más info</p>
+              </div>
+              <div class="flip-card-back">
+                <h3 class="agency-name">Sur Patagónico</h3>
+                <p class="agency-bio">La agencia líder en turismo patagónico. Más de 20 años conectando viajeros con la naturaleza salvaje del sur.</p>
+                <ul class="agency-services" role="list">
+                  <li>✓ Circuito Lagos Andinos</li>
+                  <li>✓ Ski y snowboard en Cerro Catedral</li>
+                  <li>✓ Kayak y pesca con mosca</li>
+                  <li>✓ Villas Turísticas exclusivas</li>
+                </ul>
+                <div class="agency-back-actions">
+                  <a href="contacto.html" class="btn btn--primary btn--sm">Contactar</a>
+                  <a href="#" class="btn btn--outline btn--sm">Ver paquetes</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AGENCIA 3 -->
+          <div class="flip-card" role="listitem" tabindex="0" aria-label="Agencia Vinos & Rutas – ver detalles">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <div class="agency-logo-placeholder agency-logo-placeholder--c" aria-hidden="true"><span>VR</span></div>
+                <h3 class="agency-name">Vinos & Rutas</h3>
+                <p class="agency-location">📍 Mendoza, Argentina</p>
+                <p class="agency-specialty">Especialidad: Enoturismo</p>
+                <div class="star-rating star-rating--display" aria-label="Calificación: 4.5 de 5 estrellas">
+                  <span class="star star--filled" aria-hidden="true">★</span>
+                  <span class="star star--filled" aria-hidden="true">★</span>
+                  <span class="star star--filled" aria-hidden="true">★</span>
+                  <span class="star star--filled" aria-hidden="true">★</span>
+                  <span class="star star--half" aria-hidden="true">★</span>
+                  <span class="rating-text">4.5 (89 reseñas)</span>
+                </div>
+                <p class="flip-hint" aria-hidden="true">↻ Pasá el cursor para más info</p>
+              </div>
+              <div class="flip-card-back">
+                <h3 class="agency-name">Vinos & Rutas</h3>
+                <p class="agency-bio">Experiencias de enoturismo de lujo en Mendoza. Desde catas privadas hasta cenas maridaje con sommelier personal.</p>
+                <ul class="agency-services" role="list">
+                  <li>✓ Tours a bodegas boutique</li>
+                  <li>✓ Catas privadas con sommelier</li>
+                  <li>✓ Cenas maridaje</li>
+                  <li>✓ Traslados en vehículos premium</li>
+                </ul>
+                <div class="agency-back-actions">
+                  <a href="contacto.html" class="btn btn--primary btn--sm">Contactar</a>
+                  <a href="#" class="btn btn--outline btn--sm">Ver paquetes</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AGENCIA 4 -->
+          <div class="flip-card" role="listitem" tabindex="0" aria-label="Agencia Selva Misionera – ver detalles">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <div class="agency-logo-placeholder agency-logo-placeholder--d" aria-hidden="true"><span>SM</span></div>
+                <h3 class="agency-name">Selva Misionera</h3>
+                <p class="agency-location">📍 Iguazú, Misiones</p>
+                <p class="agency-specialty">Especialidad: Ecoturismo</p>
+                <div class="star-rating star-rating--display" aria-label="Calificación: 5 de 5 estrellas">
+                  <span class="star star--filled" aria-hidden="true">★</span>
+                  <span class="star star--filled" aria-hidden="true">★</span>
+                  <span class="star star--filled" aria-hidden="true">★</span>
+                  <span class="star star--filled" aria-hidden="true">★</span>
+                  <span class="star star--filled" aria-hidden="true">★</span>
+                  <span class="rating-text">5.0 (204 reseñas)</span>
+                </div>
+                <p class="flip-hint" aria-hidden="true">↻ Pasá el cursor para más info</p>
+              </div>
+              <div class="flip-card-back">
+                <h3 class="agency-name">Selva Misionera</h3>
+                <p class="agency-bio">Los especialistas en Cataratas del Iguazú y la selva misionera. Comprometidos con el turismo sustentable.</p>
+                <ul class="agency-services" role="list">
+                  <li>✓ Recorridos en las cataratas</li>
+                  <li>✓ Avistaje de fauna</li>
+                  <li>✓ Kayak en el río Iguazú</li>
+                  <li>✓ Turismo sustentable certificado</li>
+                </ul>
+                <div class="agency-back-actions">
+                  <a href="contacto.html" class="btn btn--primary btn--sm">Contactar</a>
+                  <a href="#" class="btn btn--outline btn--sm">Ver paquetes</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AGENCIA 5 -->
+          <div class="flip-card" role="listitem" tabindex="0" aria-label="Agencia Norte Cultural – ver detalles">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <div class="agency-logo-placeholder agency-logo-placeholder--e" aria-hidden="true"><span>NC</span></div>
+                <h3 class="agency-name">Norte Cultural</h3>
+                <p class="agency-location">📍 Jujuy, Argentina</p>
+                <p class="agency-specialty">Especialidad: Turismo Cultural</p>
+                <div class="star-rating star-rating--display" aria-label="Calificación: 4.7 de 5 estrellas">
+                  <span class="star star--filled" aria-hidden="true">★</span>
+                  <span class="star star--filled" aria-hidden="true">★</span>
+                  <span class="star star--filled" aria-hidden="true">★</span>
+                  <span class="star star--filled" aria-hidden="true">★</span>
+                  <span class="star star--half" aria-hidden="true">★</span>
+                  <span class="rating-text">4.7 (156 reseñas)</span>
+                </div>
+                <p class="flip-hint" aria-hidden="true">↻ Pasá el cursor para más info</p>
+              </div>
+              <div class="flip-card-back">
+                <h3 class="agency-name">Norte Cultural</h3>
+                <p class="agency-bio">Especialistas en el patrimonio cultural del NOA. Guías bilingües, historiadores y artistas locales como anfitriones.</p>
+                <ul class="agency-services" role="list">
+                  <li>✓ Tours a Tilcara y Purmamarca</li>
+                  <li>✓ Carnaval de Humahuaca</li>
+                  <li>✓ Talleres artesanales</li>
+                  <li>✓ Gastronomía andina</li>
+                </ul>
+                <div class="agency-back-actions">
+                  <a href="contacto.html" class="btn btn--primary btn--sm">Contactar</a>
+                  <a href="#" class="btn btn--outline btn--sm">Ver paquetes</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AGENCIA 6 -->
+          <div class="flip-card" role="listitem" tabindex="0" aria-label="Agencia Costas del Plata – ver detalles">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <div class="agency-logo-placeholder agency-logo-placeholder--f" aria-hidden="true"><span>CP</span></div>
+                <h3 class="agency-name">Costas del Plata</h3>
+                <p class="agency-location">📍 Mar del Plata, Buenos Aires</p>
+                <p class="agency-specialty">Especialidad: Sol y Playa</p>
+                <div class="star-rating star-rating--display" aria-label="Calificación: 4.3 de 5 estrellas">
+                  <span class="star star--filled" aria-hidden="true">★</span>
+                  <span class="star star--filled" aria-hidden="true">★</span>
+                  <span class="star star--filled" aria-hidden="true">★</span>
+                  <span class="star star--filled" aria-hidden="true">★</span>
+                  <span class="star" aria-hidden="true">★</span>
+                  <span class="rating-text">4.3 (97 reseñas)</span>
+                </div>
+                <p class="flip-hint" aria-hidden="true">↻ Pasá el cursor para más info</p>
+              </div>
+              <div class="flip-card-back">
+                <h3 class="agency-name">Costas del Plata</h3>
+                <p class="agency-bio">Especialistas en destinos de playa bonaerenses. Desde balnearios privados hasta suites frente al mar.</p>
+                <ul class="agency-services" role="list">
+                  <li>✓ Paquetes de temporada</li>
+                  <li>✓ Balnearios privados</li>
+                  <li>✓ Deportes acuáticos</li>
+                  <li>✓ Propuestas familiares</li>
+                </ul>
+                <div class="agency-back-actions">
+                  <a href="contacto.html" class="btn btn--primary btn--sm">Contactar</a>
+                  <a href="#" class="btn btn--outline btn--sm">Ver paquetes</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /.agencies-grid -->
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" aria-label="Pie de página">
+    <div class="footer-inner">
+      <div class="footer-col footer-col--brand"><a href="index.html" class="logo logo--footer"><svg width="32" height="32" class="logo-svg" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 4 C10 14, 10 26, 20 36 C30 26, 30 14, 20 4Z" fill="currentColor" opacity="0.3"/><line x1="4" y1="20" x2="36" y2="20" stroke="currentColor" stroke-width="2"/></svg><span class="logo-text">Wanderlust</span></a><p class="footer-tagline">Conectamos viajeros con experiencias únicas.</p></div>
+      <nav class="footer-col footer-col--links" aria-label="Links"><h3 class="footer-heading">Páginas</h3><ul role="list"><li><a href="destinos.html">Destinos</a></li><li><a href="agencias.html">Agencias</a></li><li><a href="precios.html">Precios</a></li><li><a href="blog.html">Blog</a></li><li><a href="contacto.html">Contacto</a></li></ul></nav>
+    </div>
+    <div class="footer-bottom"><div class="footer-bottom-inner"><p class="copyright">© <span id="current-year">2025</span> Wanderlust Turismo.</p></div></div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

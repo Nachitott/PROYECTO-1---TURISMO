@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <!--
+    viewport: le dice al navegador que adapte el ancho al dispositivo.
+    Sin esto, el sitio se vería como escritorio en celulares.
+  -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Explora los mejores destinos turísticos del mundo con Wanderlust. Paquetes, agencias y experiencias únicas." />
+  <title>Wanderlust – Turismo de Experiencias</title>
+
+  <!--
+    Google Fonts: usamos dos tipografías distintivas.
+    - "Playfair Display": elegante, serif, para títulos y énfasis.
+    - "DM Sans": moderna, humanista, para texto corrido.
+    Se cargan con preconnect para mejorar la velocidad.
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!--
+    Archivo CSS externo: toda la presentación visual va aquí,
+    manteniendo el HTML limpio (solo estructura y contenido).
+  -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body class="page-home" data-theme="light">
+  <!--
+    ============================================================
+    HEADER: encabezado del sitio, visible en todas las páginas.
+    Usamos <header> (etiqueta semántica) en lugar de <div>.
+    La semántica ayuda a los lectores de pantalla y al SEO.
+    ============================================================
+  -->
+  <header class="site-header" id="site-header">
+    <!--
+      .header-inner: contenedor con max-width para centrar el contenido.
+      Evitamos que el header se extienda demasiado en pantallas anchas.
+    -->
+    <div class="header-inner">
+
+      <!-- Logo del sitio -->
+      <a href="index.html" class="logo" aria-label="Wanderlust – Inicio">
+        <!--
+          SVG inline: el logo como gráfico vectorial.
+          Al estar inline (no como <img>) podemos animarlo con CSS.
+        -->
+
+        <!-- LOGO OCULTADO PARA MEJORAR VISIBILIDAD DEL HTML (descomentar cuando apliquemos css)-->
+        <!-- <svg class="logo-svg" viewBox="0 0 40 40" aria-hidden="true">
+          <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path d="M20 4 C10 14, 10 26, 20 36 C30 26, 30 14, 20 4Z" fill="currentColor" opacity="0.3"/>
+          <line x1="4" y1="20" x2="36" y2="20" stroke="currentColor" stroke-width="2"/>
+        </svg> -->
+        <span class="logo-text">Wanderlust</span>
+      </a>
+
+      <!--
+        MEGA-MENÚ: navegación principal.
+        Usamos <nav> + <ul> que es la estructura semántica correcta
+        para listas de navegación (accesible para lectores de pantalla).
+
+        El mega-menú se despliega solo con CSS usando :hover y :focus-within,
+        sin JavaScript. Esto se explica en el CSS.
+      -->
+      <nav class="main-nav" aria-label="Navegación principal">
+        <ul class="nav-list" role="list">
+
+          <li class="nav-item nav-item--home">
+            <a href="index.html" class="nav-link nav-link--active" aria-current="page">Inicio</a>
+          </li>
+
+          <!--
+            ÍTEM CON MEGA-MENÚ: Destinos
+            - .has-megamenu marca que este ítem despliega un panel grande.
+            - aria-haspopup="true" informa a tecnologías asistivas.
+            - aria-expanded se actualizará con JS mínimo para accesibilidad.
+          -->
+          <li class="nav-item has-megamenu">
+            <a href="destinos.html" class="nav-link" aria-haspopup="true" aria-expanded="false">
+              Destinos
+              <!-- Ícono de flecha indicando que hay submenú -->
+              <svg class="chevron" viewBox="0 0 10 6" width="32" height="32" aria-hidden="true">
+                <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+              </svg>
+            </a>
+            <!--
+              PANEL DEL MEGA-MENÚ:
+              Se oculta con opacity:0 y visibility:hidden en CSS,
+              y se muestra al hacer hover/focus en el <li> padre.
+              Usamos <div role="region"> para semántica.
+            -->
+            <div class="megamenu" role="region" aria-label="Categorías de destinos">
+              <div class="megamenu-inner">
+
+                <div class="megamenu-col">
+                  <h3 class="megamenu-heading">Por Categoría</h3>
+                  <ul role="list">
+                    <li><a href="destinos.html#cultural" class="megamenu-link">🏛️ Cultural</a></li>
+                    <li><a href="destinos.html#naturaleza" class="megamenu-link">🌿 Naturaleza</a></li>
+                    <li><a href="destinos.html#playa" class="megamenu-link">🏖️ Sol y Playa</a></li>
+                    <li><a href="destinos.html#gastronomico" class="megamenu-link">🍽️ Gastronómico</a></li>
+                    <li><a href="destinos.html#religioso" class="megamenu-link">⛪ Religioso</a></li>
+                  </ul>
+                </div>
+
+                <div class="megamenu-col">
+                  <h3 class="megamenu-heading">Destinos Populares</h3>
+                  <ul role="list">
+                    <li><a href="destinos.html" class="megamenu-link">Patagonia Argentina</a></li>
+                    <li><a href="destinos.html" class="megamenu-link">Salta y Jujuy</a></li>
+                    <li><a href="destinos.html" class="megamenu-link">Cataratas del Iguazú</a></li>
+                    <li><a href="destinos.html" class="megamenu-link">Mendoza Viñedos</a></li>
+                    <li><a href="destinos.html" class="megamenu-link">Bariloche</a></li>
+                  </ul>
+                </div>
+
+                <div class="megamenu-col megamenu-col--featured">
+                  <h3 class="megamenu-heading">Destino del Mes</h3>
+                  <!--
+                    Imagen destacada dentro del mega-menú.
+                    aspect-ratio en CSS mantiene la proporción sin JS.
+                  -->
+                  <div class="megamenu-featured-card">
+                    <img
+                      src="img/destino-featured.jpg"
+                      alt="Quebrada de Humahuaca, Jujuy"
+                      loading="lazy"
+                      width="240"
+                      height="140"
+                    />
+                    <p class="megamenu-featured-title">Quebrada de Humahuaca</p>
+                    <a href="destinos.html" class="btn btn--sm">Ver paquetes</a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item has-megamenu">
+            <a href="agencias.html" class="nav-link" aria-haspopup="true" aria-expanded="false">
+              Agencias
+              <svg class="chevron" viewBox="0 0 10 6" width="32" height="32" aria-hidden="true">
+                <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+              </svg>
+            </a>
+            <div class="megamenu" role="region" aria-label="Opciones de agencias">
+              <div class="megamenu-inner megamenu-inner--simple">
+                <div class="megamenu-col">
+                  <h3 class="megamenu-heading">Explorar</h3>
+                  <ul role="list">
+                    <li><a href="agencias.html" class="megamenu-link">Todas las Agencias</a></li>
+                    <li><a href="agencias.html" class="megamenu-link">Agencias Premium</a></li>
+                    <li><a href="agencias.html" class="megamenu-link">Mejor Valoradas</a></li>
+                    <li><a href="agencias.html" class="megamenu-link">Agencias Locales</a></li>
+                  </ul>
+                </div>
+                <div class="megamenu-col">
+                  <h3 class="megamenu-heading">Servicios</h3>
+                  <ul role="list">
+                    <li><a href="contacto.html" class="megamenu-link">Solicitar Cotización</a></li>
+                    <li><a href="contacto.html" class="megamenu-link">Armar Paquete</a></li>
+                    <li><a href="contacto.html" class="megamenu-link">Asesoramiento</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item has-megamenu">
+            <a href="precios.html" class="nav-link" aria-haspopup="true" aria-expanded="false">
+              Precios
+              <svg class="chevron" viewBox="0 0 10 6" width="32" height="32" aria-hidden="true">
+                <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+              </svg>
+            </a>
+            <div class="megamenu" role="region" aria-label="Opciones de precios">
+              <div class="megamenu-inner megamenu-inner--simple">
+                <div class="megamenu-col">
+                  <h3 class="megamenu-heading">Comparar</h3>
+                  <ul role="list">
+                    <li><a href="precios.html" class="megamenu-link">Comparador de Destinos</a></li>
+                    <li><a href="precios.html" class="megamenu-link">Tabla de Precios</a></li>
+                    <li><a href="precios.html" class="megamenu-link">Ofertas Especiales</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a href="blog.html" class="nav-link">Blog</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="contacto.html" class="nav-link nav-link--cta">Contacto</a>
+          </li>
+
+        </ul>
+      </nav>
+
+      <!-- Controles del header: modo oscuro + menú móvil -->
+      <div class="header-controls">
+        <!--
+          Botón de modo oscuro (Dark Mode).
+          JS mínimo: solo alterna el atributo data-theme en <body>.
+          Todo el cambio visual lo hace CSS con variables.
+        -->
+        <button
+          class="btn-icon btn-darkmode"
+          id="darkModeToggle"
+          aria-label="Alternar modo oscuro"
+          title="Modo oscuro"
+        >
+          <!-- Ícono sol (modo claro activo) -->
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <!-- Ícono luna (modo oscuro activo) -->
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+
+        <!--
+          Botón hamburguesa para menú móvil.
+          aria-controls indica qué elemento controla.
+          JS mínimo: togglea clase .is-open en el nav.
+        -->
+        <button
+          class="btn-icon btn-hamburger"
+          id="menuToggle"
+          aria-label="Abrir menú"
+          aria-controls="main-nav"
+          aria-expanded="false"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+
+    </div><!-- /.header-inner -->
+  </header>
+
+  <!--
+    ============================================================
+    MAIN: contenido principal de la página.
+    <main> es semántico: hay un solo <main> por página.
+    ============================================================
+  -->
+  <main id="main-content">
+
+    <!--
+      ──────────────────────────────────────────────────────────
+      SECCIÓN 1: HERO
+      Video de fondo + overlay + texto animado.
+      Técnicas CSS: clip-path, keyframes, Custom Properties.
+      ──────────────────────────────────────────────────────────
+    -->
+    <section class="hero" aria-label="Sección principal">
+
+      <!--
+        VIDEO DE FONDO:
+        - autoplay: empieza automáticamente.
+        - muted: necesario para autoplay sin interacción del usuario.
+        - loop: se repite.
+        - playsinline: evita pantalla completa en iOS.
+        - preload="metadata": carga solo los metadatos al inicio.
+        - <source> con type: el navegador elige el formato soportado.
+        - El <p> dentro es el fallback si el navegador no soporta video.
+        aria-hidden: el video es decorativo, los lectores de pantalla lo ignoran.
+      -->
+      <div class="hero-video-wrapper" aria-hidden="true">
+        <video
+          class="hero-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+        >
+          <source src="video/hero-destino.mp4" type="video/mp4" />
+          <source src="video/hero-destino.webm" type="video/webm" />
+          <!-- Fallback: imagen si el video no carga -->
+          <img src="img/hero-fallback.jpg" alt="" />
+        </video>
+        <!-- Overlay oscuro sobre el video para que el texto sea legible -->
+        <div class="hero-overlay"></div>
+      </div>
+
+      <!-- Contenido del hero: texto animado -->
+      <div class="hero-content">
+        <!--
+          .hero-tag: etiqueta pequeña que aparece primero (animación stagger).
+          Stagger = cada elemento hijo aparece con un retraso distinto,
+          creando un efecto de cascada. Se logra con animation-delay en CSS.
+        -->
+        <p class="hero-tag animate-in" style="--delay: 0s">✈️ Descubre el mundo</p>
+
+        <h1 class="hero-title animate-in" style="--delay: 0.15s">
+          Viaja sin límites,<br />
+          <em>vive sin fronteras</em>
+        </h1>
+
+        <p class="hero-subtitle animate-in" style="--delay: 0.3s">
+          Destinos únicos, experiencias auténticas y paquetes diseñados para cada aventurero.
+        </p>
+
+        <div class="hero-actions animate-in" style="--delay: 0.45s">
+          <a href="destinos.html" class="btn btn--primary btn--lg">Explorar Destinos</a>
+          <a href="#como-funciona" class="btn btn--ghost btn--lg">¿Cómo funciona?</a>
+        </div>
+      </div>
+
+      <!--
+        Indicador de scroll: flecha animada que invita a bajar.
+        animation: bounceDown en keyframes del CSS.
+      -->
+      <a href="#destinos-destacados" class="scroll-indicator" aria-label="Ir al contenido">
+        <svg viewBox="0 0 24 24" width="32" height="32" aria-hidden="true">
+          <path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" fill="none"/>
+        </svg>
+      </a>
+
+    </section>
+    <!--/ .hero -->
+
+    <!--
+      ──────────────────────────────────────────────────────────
+      SECCIÓN 2: DESTINOS DESTACADOS
+      Cards con hover effects y transiciones CSS.
+      Técnicas CSS: transform, transition, overflow, object-fit.
+      ──────────────────────────────────────────────────────────
+    -->
+    <section class="section destinations-featured" id="destinos-destacados" aria-labelledby="dest-title">
+
+      <div class="section-inner">
+        <header class="section-header">
+          <p class="section-label">Lo más popular</p>
+          <h2 class="section-title" id="dest-title">Destinos Destacados</h2>
+          <p class="section-subtitle">Los lugares que más eligen nuestros viajeros este año.</p>
+        </header>
+
+        <!--
+          Grid de tarjetas (cards).
+          CSS Grid con auto-fill y minmax para que las columnas
+          se adapten solas sin media queries explícitas.
+          Esto se define en el CSS como:
+          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr))
+        -->
+        <div class="cards-grid" role="list">
+
+          <!--
+            CARD DE DESTINO:
+            Estructura:
+            - .card-image-wrapper: contiene la imagen + etiqueta de categoría.
+            - img con loading="lazy": el navegador carga la imagen solo cuando
+              está cerca del viewport (viewport = área visible de la pantalla).
+            - .card-body: información textual.
+            - .card-footer: precio y botón.
+
+            El efecto hover (zoom de imagen + overlay) se hace 100% en CSS:
+            .destination-card:hover .card-image img { transform: scale(1.08); }
+          -->
+          <article class="destination-card" role="listitem">
+            <div class="card-image-wrapper">
+              <img
+                src="img/dest-jujuy.jpg"
+                alt="Quebrada de Humahuaca, Jujuy – paisaje de montañas coloridas"
+                loading="lazy"
+                width="400"
+                height="260"
+              />
+              <span class="card-badge card-badge--cultural">Cultural</span>
+              <!-- Overlay con info extra que aparece en hover -->
+              <div class="card-hover-overlay">
+                <p>Patrimonio de la Humanidad UNESCO</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-location">📍 Jujuy, Argentina</span>
+                <span class="card-rating" aria-label="4.8 de 5 estrellas">⭐ 4.8</span>
+              </div>
+              <h3 class="card-title">Quebrada de Humahuaca</h3>
+              <p class="card-desc">Colores que cambian con la luz del sol, pueblos ancestrales y cultura viva en los Andes.</p>
+            </div>
+            <div class="card-footer">
+              <p class="card-price">
+                <span class="price-from">Desde</span>
+                <strong class="price-amount">$85.000</strong>
+                <span class="price-per">/ persona</span>
+              </p>
+              <a href="destinos.html" class="btn btn--sm btn--outline">Ver paquete</a>
+            </div>
+          </article>
+
+          <article class="destination-card" role="listitem">
+            <div class="card-image-wrapper">
+              <img
+                src="img/dest-patagonia.jpg"
+                alt="Torres del Paine, Patagonia – lago y montañas nevadas"
+                loading="lazy"
+                width="400"
+                height="260"
+              />
+              <span class="card-badge card-badge--naturaleza">Naturaleza</span>
+              <div class="card-hover-overlay">
+                <p>Parque Nacional de clase mundial</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-location">📍 Santa Cruz, Argentina</span>
+                <span class="card-rating" aria-label="4.9 de 5 estrellas">⭐ 4.9</span>
+              </div>
+              <h3 class="card-title">Glaciar Perito Moreno</h3>
+              <p class="card-desc">El espectáculo natural más imponente del sur: un glaciar vivo que avanza y truena.</p>
+            </div>
+            <div class="card-footer">
+              <p class="card-price">
+                <span class="price-from">Desde</span>
+                <strong class="price-amount">$142.000</strong>
+                <span class="price-per">/ persona</span>
+              </p>
+              <a href="destinos.html" class="btn btn--sm btn--outline">Ver paquete</a>
+            </div>
+          </article>
+
+          <article class="destination-card" role="listitem">
+            <div class="card-image-wrapper">
+              <img
+                src="img/dest-iguazu.jpg"
+                alt="Cataratas del Iguazú desde el pasarela inferior"
+                loading="lazy"
+                width="400"
+                height="260"
+              />
+              <span class="card-badge card-badge--naturaleza">Naturaleza</span>
+              <div class="card-hover-overlay">
+                <p>Una de las 7 maravillas naturales</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-location">📍 Misiones, Argentina</span>
+                <span class="card-rating" aria-label="5 de 5 estrellas">⭐ 5.0</span>
+              </div>
+              <h3 class="card-title">Cataratas del Iguazú</h3>
+              <p class="card-desc">275 saltos de agua que forman la caída más ancha y poderosa del mundo.</p>
+            </div>
+            <div class="card-footer">
+              <p class="card-price">
+                <span class="price-from">Desde</span>
+                <strong class="price-amount">$98.000</strong>
+                <span class="price-per">/ persona</span>
+              </p>
+              <a href="destinos.html" class="btn btn--sm btn--outline">Ver paquete</a>
+            </div>
+          </article>
+
+          <article class="destination-card" role="listitem">
+            <div class="card-image-wrapper">
+              <img
+                src="img/dest-mendoza.jpg"
+                alt="Viñedos de Mendoza con los Andes de fondo"
+                loading="lazy"
+                width="400"
+                height="260"
+              />
+              <span class="card-badge card-badge--gastronomico">Gastronómico</span>
+              <div class="card-hover-overlay">
+                <p>Capital del vino argentino</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-location">📍 Mendoza, Argentina</span>
+                <span class="card-rating" aria-label="4.7 de 5 estrellas">⭐ 4.7</span>
+              </div>
+              <h3 class="card-title">Ruta del Vino Mendocina</h3>
+              <p class="card-desc">Bodegas de autor, catas exclusivas y gastronomía de nivel mundial con vista a la cordillera.</p>
+            </div>
+            <div class="card-footer">
+              <p class="card-price">
+                <span class="price-from">Desde</span>
+                <strong class="price-amount">$76.000</strong>
+                <span class="price-per">/ persona</span>
+              </p>
+              <a href="destinos.html" class="btn btn--sm btn--outline">Ver paquete</a>
+            </div>
+          </article>
+
+          <article class="destination-card" role="listitem">
+            <div class="card-image-wrapper">
+              <img
+                src="img/dest-bariloche.jpg"
+                alt="Lago Nahuel Huapi y montañas nevadas en Bariloche"
+                loading="lazy"
+                width="400"
+                height="260"
+              />
+              <span class="card-badge card-badge--playa">Sol y Playa</span>
+              <div class="card-hover-overlay">
+                <p>La Suiza argentina</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-location">📍 Río Negro, Argentina</span>
+                <span class="card-rating" aria-label="4.8 de 5 estrellas">⭐ 4.8</span>
+              </div>
+              <h3 class="card-title">Bariloche y Lagos</h3>
+              <p class="card-desc">Deportes de nieve en invierno, kayak y senderismo en verano. Un destino para todo el año.</p>
+            </div>
+            <div class="card-footer">
+              <p class="card-price">
+                <span class="price-from">Desde</span>
+                <strong class="price-amount">$110.000</strong>
+                <span class="price-per">/ persona</span>
+              </p>
+              <a href="destinos.html" class="btn btn--sm btn--outline">Ver paquete</a>
+            </div>
+          </article>
+
+          <article class="destination-card" role="listitem">
+            <div class="card-image-wrapper">
+              <img
+                src="img/dest-salta.jpg"
+                alt="Centro histórico de Salta con arquitectura colonial"
+                loading="lazy"
+                width="400"
+                height="260"
+              />
+              <span class="card-badge card-badge--cultural">Cultural</span>
+              <div class="card-hover-overlay">
+                <p>Arquitectura colonial y tradición</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-location">📍 Salta, Argentina</span>
+                <span class="card-rating" aria-label="4.6 de 5 estrellas">⭐ 4.6</span>
+              </div>
+              <h3 class="card-title">Salta la Linda</h3>
+              <p class="card-desc">Iglesias barrocas, mercados artesanales, el Tren a las Nubes y el calor del NOA.</p>
+            </div>
+            <div class="card-footer">
+              <p class="card-price">
+                <span class="price-from">Desde</span>
+                <strong class="price-amount">$72.000</strong>
+                <span class="price-per">/ persona</span>
+              </p>
+              <a href="destinos.html" class="btn btn--sm btn--outline">Ver paquete</a>
+            </div>
+          </article>
+
+        </div><!-- /.cards-grid -->
+
+        <div class="section-cta">
+          <a href="destinos.html" class="btn btn--primary">Ver todos los destinos</a>
+        </div>
+      </div>
+
+    </section>
+    <!--/ .destinations-featured -->
+
+    <!--
+      ──────────────────────────────────────────────────────────
+      SECCIÓN 3: CONTADOR ANIMADO
+      Números que cuentan solos cuando entran al viewport.
+      Técnica: CSS @keyframes + JS mínimo con IntersectionObserver
+      para activar la animación cuando el elemento es visible.
+      ──────────────────────────────────────────────────────────
+    -->
+    <section class="section stats-section" aria-labelledby="stats-title">
+      <div class="section-inner">
+        <h2 class="sr-only" id="stats-title">Nuestros números</h2>
+
+        <div class="stats-grid">
+
+          <!--
+            Cada .stat-item tiene:
+            - data-target: el número final al que llega el contador.
+            - data-suffix: el símbolo que va después (%, +, etc.)
+            JS leerá estos atributos para animar el número.
+          -->
+          <div class="stat-item">
+            <p class="stat-number" data-target="500" data-suffix="+">0</p>
+            <p class="stat-label">Destinos disponibles</p>
+          </div>
+
+          <div class="stat-item">
+            <p class="stat-number" data-target="12000" data-suffix="+">0</p>
+            <p class="stat-label">Viajeros felices</p>
+          </div>
+
+          <div class="stat-item">
+            <p class="stat-number" data-target="48" data-suffix="">0</p>
+            <p class="stat-label">Agencias aliadas</p>
+          </div>
+
+          <div class="stat-item">
+            <p class="stat-number" data-target="98" data-suffix="%">0</p>
+            <p class="stat-label">Satisfacción garantizada</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!--/ .stats-section -->
+
+    <!--
+      ──────────────────────────────────────────────────────────
+      SECCIÓN 4: TESTIMONIOS (CARRUSEL SOLO CSS)
+      Técnica: radio inputs ocultos + labels como controles.
+      Sin JavaScript. El truco es usar input[type="radio"]:checked
+      para mostrar/ocultar las diapositivas mediante el combinador ~.
+      ──────────────────────────────────────────────────────────
+    -->
+    <section class="section testimonials-section" aria-labelledby="testimonios-title">
+      <div class="section-inner">
+        <header class="section-header">
+          <p class="section-label">Lo que dicen</p>
+          <h2 class="section-title" id="testimonios-title">Testimonios de Viajeros</h2>
+        </header>
+
+        <!--
+          CARRUSEL CSS-ONLY:
+          Los <input type="radio"> son invisibles pero controlables.
+          Los <label> son los "dots" (puntos de navegación).
+          El CSS hace: input#s1:checked ~ .carousel .slide-1 { display: block }
+        -->
+        <div class="carousel" role="region" aria-label="Carrusel de testimonios">
+
+          <!-- Radio inputs: uno por diapositiva -->
+          <input type="radio" name="testimonial" id="t1" class="carousel-input" checked aria-label="Testimonio 1" />
+          <input type="radio" name="testimonial" id="t2" class="carousel-input" aria-label="Testimonio 2" />
+          <input type="radio" name="testimonial" id="t3" class="carousel-input" aria-label="Testimonio 3" />
+
+          <!-- Diapositivas de testimonios -->
+          <div class="carousel-track">
+
+            <div class="carousel-slide" id="slide-1">
+              <blockquote class="testimonial-card">
+                <div class="testimonial-avatar" aria-hidden="true">M</div>
+                <div class="testimonial-content">
+                  <p class="testimonial-text">
+                    "Wanderlust transformó mi manera de viajar. El paquete a Jujuy fue perfecto: 
+                    guías locales, alojamiento encantador y una experiencia que nunca voy a olvidar."
+                  </p>
+                  <footer class="testimonial-footer">
+                    <cite class="testimonial-author">María González</cite>
+                    <span class="testimonial-trip">Quebrada de Humahuaca, 2024</span>
+                    <span class="testimonial-stars" aria-label="5 estrellas">★★★★★</span>
+                  </footer>
+                </div>
+              </blockquote>
+            </div>
+
+            <div class="carousel-slide" id="slide-2">
+              <blockquote class="testimonial-card">
+                <div class="testimonial-avatar" aria-hidden="true">C</div>
+                <div class="testimonial-content">
+                  <p class="testimonial-text">
+                    "Viajamos en familia a las Cataratas y todo estuvo impecable. 
+                    La logística, el hotel, las excursiones... Todo coordinado a la perfección."
+                  </p>
+                  <footer class="testimonial-footer">
+                    <cite class="testimonial-author">Carlos Ramírez</cite>
+                    <span class="testimonial-trip">Cataratas del Iguazú, 2024</span>
+                    <span class="testimonial-stars" aria-label="5 estrellas">★★★★★</span>
+                  </footer>
+                </div>
+              </blockquote>
+            </div>
+
+            <div class="carousel-slide" id="slide-3">
+              <blockquote class="testimonial-card">
+                <div class="testimonial-avatar" aria-hidden="true">L</div>
+                <div class="testimonial-content">
+                  <p class="testimonial-text">
+                    "La Ruta del Vino en Mendoza superó todas mis expectativas. 
+                    Bodegas privadas, cenas maridaje y paisajes que quitan el aliento."
+                  </p>
+                  <footer class="testimonial-footer">
+                    <cite class="testimonial-author">Laura Méndez</cite>
+                    <span class="testimonial-trip">Mendoza, 2025</span>
+                    <span class="testimonial-stars" aria-label="5 estrellas">★★★★★</span>
+                  </footer>
+                </div>
+              </blockquote>
+            </div>
+
+          </div><!-- /.carousel-track -->
+
+          <!-- Labels = puntos de navegación (dots) -->
+          <div class="carousel-dots" role="tablist" aria-label="Navegar testimonios">
+            <label for="t1" class="carousel-dot" role="tab" aria-label="Testimonio 1"></label>
+            <label for="t2" class="carousel-dot" role="tab" aria-label="Testimonio 2"></label>
+            <label for="t3" class="carousel-dot" role="tab" aria-label="Testimonio 3"></label>
+          </div>
+
+        </div><!-- /.carousel -->
+
+      </div>
+    </section>
+    <!--/ .testimonials-section -->
+
+    <!--
+      ──────────────────────────────────────────────────────────
+      SECCIÓN 5: CÓMO FUNCIONA (Scroll Snap target)
+      ──────────────────────────────────────────────────────────
+    -->
+    <section class="section how-it-works" id="como-funciona" aria-labelledby="how-title">
+      <div class="section-inner">
+        <header class="section-header">
+          <p class="section-label">Simple y rápido</p>
+          <h2 class="section-title" id="how-title">¿Cómo funciona?</h2>
+        </header>
+
+        <ol class="steps-list" role="list">
+          <li class="step-item">
+            <div class="step-icon" aria-hidden="true">🔍</div>
+            <div class="step-number" aria-hidden="true">01</div>
+            <h3 class="step-title">Explorá destinos</h3>
+            <p class="step-desc">Usá nuestros filtros para encontrar el destino ideal según tu presupuesto, intereses y duración del viaje.</p>
+          </li>
+          <li class="step-item">
+            <div class="step-icon" aria-hidden="true">✉️</div>
+            <div class="step-number" aria-hidden="true">02</div>
+            <h3 class="step-title">Contactá una agencia</h3>
+            <p class="step-desc">Elegí entre nuestras agencias verificadas y recibí una cotización personalizada sin costo.</p>
+          </li>
+          <li class="step-item">
+            <div class="step-icon" aria-hidden="true">🧳</div>
+            <div class="step-number" aria-hidden="true">03</div>
+            <h3 class="step-title">Hacé tu reserva</h3>
+            <p class="step-desc">Confirmá tu reserva de forma segura y recibí toda la documentación e itinerario en tu email.</p>
+          </li>
+          <li class="step-item">
+            <div class="step-icon" aria-hidden="true">🌍</div>
+            <div class="step-number" aria-hidden="true">04</div>
+            <h3 class="step-title">Disfrutá el viaje</h3>
+            <p class="step-desc">Viajá con soporte 24/7. Nuestro equipo está disponible antes, durante y después de tu aventura.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+  </main>
+  <!--/ #main-content -->
+
+  <!--
+    ============================================================
+    FOOTER: pie de página.
+    Contiene: newsletter, redes sociales y mapa embebido.
+    ============================================================
+  -->
+  <footer class="site-footer" aria-label="Pie de página">
+    <div class="footer-inner">
+
+      <!-- Columna 1: Info del sitio -->
+      <div class="footer-col footer-col--brand">
+        <a href="index.html" class="logo logo--footer" aria-label="Wanderlust – Inicio">
+          <svg class="logo-svg" viewBox="0 0 40 40" width="32" height="32" aria-hidden="true">
+            <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M20 4 C10 14, 10 26, 20 36 C30 26, 30 14, 20 4Z" fill="currentColor" opacity="0.3"/>
+            <line x1="4" y1="20" x2="36" y2="20" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <span class="logo-text">Wanderlust</span>
+        </a>
+        <p class="footer-tagline">Conectamos viajeros con experiencias únicas en Argentina y el mundo.</p>
+
+        <!-- Redes sociales -->
+        <nav class="social-links" aria-label="Redes sociales">
+          <a href="#" class="social-link" aria-label="Instagram de Wanderlust" rel="noopener noreferrer">
+            <!-- SVG Instagram -->
+            <svg viewBox="0 0 24 24" width="32" height="32" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
+              <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+            </svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Facebook de Wanderlust" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" width="32" height="32" aria-hidden="true">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </a>
+          <a href="#" class="social-link" aria-label="YouTube de Wanderlust" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" width="32" height="32" aria-hidden="true">
+              <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.96-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" fill="none" stroke="currentColor" stroke-width="2"/>
+              <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </a>
+          <a href="#" class="social-link" aria-label="WhatsApp de Wanderlust" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" width="32" height="32" aria-hidden="true">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Columna 2: Links rápidos -->
+      <nav class="footer-col footer-col--links" aria-label="Links de destinos">
+        <h3 class="footer-heading">Destinos</h3>
+        <ul role="list">
+          <li><a href="destinos.html#cultural">Turismo Cultural</a></li>
+          <li><a href="destinos.html#naturaleza">Ecoturismo</a></li>
+          <li><a href="destinos.html#playa">Sol y Playa</a></li>
+          <li><a href="destinos.html#gastronomico">Turismo Gastronómico</a></li>
+          <li><a href="destinos.html#religioso">Turismo Religioso</a></li>
+        </ul>
+      </nav>
+
+      <!-- Columna 3: Empresa -->
+      <nav class="footer-col footer-col--links" aria-label="Links de empresa">
+        <h3 class="footer-heading">Empresa</h3>
+        <ul role="list">
+          <li><a href="agencias.html">Agencias</a></li>
+          <li><a href="precios.html">Precios</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <!-- Columna 4: Newsletter -->
+      <div class="footer-col footer-col--newsletter">
+        <h3 class="footer-heading">Suscribite al newsletter</h3>
+        <p class="footer-newsletter-desc">Ofertas exclusivas, nuevos destinos y consejos de viaje directo a tu bandeja.</p>
+
+        <!--
+          FORMULARIO NEWSLETTER:
+          - action="#": en un sitio real apuntaría a un endpoint del servidor.
+          - novalidate: desactivamos la validación nativa del navegador
+            para hacer la nuestra con CSS (:valid/:invalid) en la página de contacto.
+          - El input type="email" activa el teclado correcto en móviles.
+        -->
+        <form class="newsletter-form" action="#" method="post" novalidate aria-label="Formulario de suscripción">
+          <div class="newsletter-input-wrapper">
+            <label for="newsletter-email" class="sr-only">Tu email</label>
+            <input
+              type="email"
+              id="newsletter-email"
+              name="email"
+              placeholder="tu@email.com"
+              required
+              autocomplete="email"
+              aria-required="true"
+            />
+            <button type="submit" class="btn btn--primary" aria-label="Suscribirse">
+              Suscribirse
+            </button>
+          </div>
+          <p class="newsletter-privacy">
+            <small>Sin spam. Podés darte de baja cuando quieras.</small>
+          </p>
+        </form>
+      </div>
+
+    </div><!-- /.footer-inner -->
+
+    <!--
+      MAPA EMBEBIDO:
+      OpenStreetMap via iframe. No requiere API Key.
+      - loading="lazy": el iframe se carga solo cuando es visible.
+      - title: accesibilidad (lectores de pantalla anuncian el contenido del iframe).
+      Coordenadas: San Salvador de Jujuy como ejemplo.
+    -->
+    <div class="footer-map" aria-label="Mapa de nuestra ubicación">
+      <iframe
+        title="Mapa de ubicación de Wanderlust Turismo"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=-65.3150%2C-24.2050%2C-65.2850%2C-24.1750&layer=mapnik&marker=-24.1900%2C-65.3000"
+        width="100%"
+        height="250"
+        style="border: 0;"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+
+    <!-- Barra de copyright -->
+    <div class="footer-bottom">
+      <div class="footer-bottom-inner">
+        <p class="copyright">© <span id="current-year">2025</span> Wanderlust Turismo. Todos los derechos reservados.</p>
+        <nav aria-label="Links legales">
+          <a href="#">Privacidad</a>
+          <a href="#">Términos y Condiciones</a>
+          <a href="#">Cookies</a>
+        </nav>
+      </div>
+    </div>
+
+  </footer>
+  <!--/ .site-footer -->
+
+  <!--
+    ============================================================
+    JAVASCRIPT MÍNIMO:
+    Solo para funcionalidades que CSS no puede hacer solo:
+    1. Toggle modo oscuro (dark mode)
+    2. Toggle menú móvil
+    3. Contador animado (IntersectionObserver)
+    4. Año dinámico en copyright
+    5. aria-expanded en mega-menú para accesibilidad
+    ============================================================
+  -->
+  <script src="js/main.js" defer></script>
+  <!--
+    defer: el script se descarga en paralelo con el HTML
+    pero se ejecuta DESPUÉS de que el DOM esté listo.
+    Así no bloquea la renderización de la página.
+  -->
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+---- el codigo esta en varias partes comentado explicando que hace cada cosa y dando un poco de contexto.
+
+---- todas las etiquetas <svg> estan con atributos "width" y "height" para darles un tamaño y no ocupen todo el tamaño en pantalla
+     ya que estas no tienen un tamaño determinado al no ser <img>, al momento de empezar con el CSS y que no surgan efectos intentar borrar
+     estos atributos antes de cualquier cosa.
+
+---- si saben organizar mejor la estructura del proyecto haganlo porque mi copilot tiene down.
+
+---- avisar sobre cualquier cambio en el proyecto y/o archivos.
+
+---- algunas etiquetas por lo que vi estan mal organizadas (por ej: <svg><a><li>.......</li></a></svg>) todo en una misma linea por lo que
+     lo recomendable es reestructurarlas mejor para que visualmente sean agradables.
+
+---- antes de dejar el producto final debemos eliminar todos los comentarios que explicando y dando contexto, todo esto lo podemos
+     reutilizar de alguna manera para hacer el documento con la documentacion tecnica que se nos pide (item 2 de seccion entregables
+     en el pdf del tp).
+
+---- cualquier otro error o dato que posta necesitemos tener en cuenta mandarlo al grupo de Servicios Mica.
+
+puto el que lee

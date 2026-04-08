@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Compará precios de destinos turísticos. Tabla interactiva con tooltips y resaltado al pasar el cursor." />
+  <title>Precios – Wanderlust Turismo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body class="page-precios" data-theme="light">
+
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo" aria-label="Wanderlust – Inicio">
+        <svg width="32" height="32" class="logo-svg" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 4 C10 14, 10 26, 20 36 C30 26, 30 14, 20 4Z" fill="currentColor" opacity="0.3"/><line x1="4" y1="20" x2="36" y2="20" stroke="currentColor" stroke-width="2"/></svg>
+        <span class="logo-text">Wanderlust</span>
+      </a>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <ul class="nav-list" role="list">
+          <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+          <li class="nav-item has-megamenu"><a href="destinos.html" class="nav-link" aria-haspopup="true" aria-expanded="false">Destinos <svg width="32" height="32" class="chevron" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></a><div class="megamenu" role="region"><div class="megamenu-inner megamenu-inner--simple"><div class="megamenu-col"><ul role="list"><li><a href="destinos.html" class="megamenu-link">Ver todos</a></li></ul></div></div></div></li>
+          <li class="nav-item has-megamenu"><a href="agencias.html" class="nav-link" aria-haspopup="true" aria-expanded="false">Agencias <svg width="32" height="32" class="chevron" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></a><div class="megamenu" role="region"><div class="megamenu-inner megamenu-inner--simple"><div class="megamenu-col"><ul role="list"><li><a href="agencias.html" class="megamenu-link">Ver agencias</a></li></ul></div></div></div></li>
+          <li class="nav-item has-megamenu"><a href="precios.html" class="nav-link nav-link--active" aria-current="page" aria-haspopup="true" aria-expanded="false">Precios <svg width="32" height="32" class="chevron" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></a><div class="megamenu" role="region"><div class="megamenu-inner megamenu-inner--simple"><div class="megamenu-col"><ul role="list"><li><a href="precios.html" class="megamenu-link">Comparador</a></li></ul></div></div></div></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+          <li class="nav-item"><a href="contacto.html" class="nav-link nav-link--cta">Contacto</a></li>
+        </ul>
+      </nav>
+      <div class="header-controls">
+        <button class="btn-icon btn-darkmode" id="darkModeToggle" aria-label="Alternar modo oscuro"><svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+        <button class="btn-icon btn-hamburger" id="menuToggle" aria-label="Abrir menú" aria-controls="main-nav" aria-expanded="false"><span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <section class="page-hero" aria-label="Encabezado de precios">
+      <div class="page-hero-content">
+        <p class="section-label">Transparencia total</p>
+        <h1 class="page-hero-title">Comparador de Precios</h1>
+        <p class="page-hero-subtitle">Todos nuestros precios, sin sorpresas. Compará y elegí el destino que más se adapta a vos.</p>
+      </div>
+    </section>
+
+    <!--
+      ──────────────────────────────────────────────────────────
+      TABLA DE PRECIOS CON TOOLTIPS
+      Técnicas CSS:
+      1. tr:hover → resaltado de la fila completa al pasar el cursor.
+         CSS: .prices-comparison-table tbody tr:hover { background: var(--color-accent-light); }
+      2. Tooltips CSS-only:
+         - El elemento con tooltip tiene [data-tooltip] attribute.
+         - En CSS: [data-tooltip]:hover::after { content: attr(data-tooltip); ... }
+         - Esto crea un pseudo-elemento con el texto del atributo.
+         - Se posiciona absolute respecto al elemento padre (position: relative).
+      3. Columna destacada (.col-featured) con borde y fondo distinto.
+      ──────────────────────────────────────────────────────────
+    -->
+    <section class="section pricing-section" aria-labelledby="pricing-title">
+      <div class="section-inner">
+        <header class="section-header">
+          <p class="section-label">Sin letra chica</p>
+          <h2 class="section-title" id="pricing-title">Tabla Comparativa de Destinos</h2>
+          <p class="section-subtitle">Pasá el cursor sobre las celdas con ℹ️ para ver información adicional.</p>
+        </header>
+
+        <div class="table-responsive-wrapper" role="region" aria-label="Comparador de precios de destinos" tabindex="0">
+          <table class="prices-comparison-table">
+            <caption class="sr-only">Comparativa de precios entre destinos turísticos</caption>
+            <thead>
+              <tr>
+                <th scope="col">Destino</th>
+                <th scope="col">Categoría</th>
+                <th scope="col">
+                  Duración
+                  <span
+                    class="tooltip-trigger"
+                    data-tooltip="Días totales del paquete incluyendo ida y vuelta"
+                    aria-label="Más información sobre duración"
+                  >ℹ️</span>
+                </th>
+                <th scope="col">
+                  Precio base
+                  <span
+                    class="tooltip-trigger"
+                    data-tooltip="Precio por persona en habitación doble, en temporada baja"
+                    aria-label="Más información sobre precio base"
+                  >ℹ️</span>
+                </th>
+                <th scope="col">
+                  Precio premium
+                  <span
+                    class="tooltip-trigger"
+                    data-tooltip="Incluye hotel 4★, vuelos, excursiones y guía personalizado"
+                    aria-label="Más información sobre precio premium"
+                  >ℹ️</span>
+                </th>
+                <th scope="col">
+                  Incluye vuelos
+                  <span
+                    class="tooltip-trigger"
+                    data-tooltip="El paquete base puede no incluir vuelos según el destino"
+                    aria-label="Más información sobre vuelos"
+                  >ℹ️</span>
+                </th>
+                <th scope="col">
+                  Mejor época
+                  <span
+                    class="tooltip-trigger"
+                    data-tooltip="La época recomendada para visitar este destino"
+                    aria-label="Más información sobre mejor época"
+                  >ℹ️</span>
+                </th>
+                <th scope="col">Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Destino"><strong>Quebrada de Humahuaca</strong></td>
+                <td data-label="Categoría"><span class="cat-pill cat-pill--cultural">Cultural</span></td>
+                <td data-label="Duración">5 días</td>
+                <td data-label="Precio base"><strong class="price-highlight">$85.000</strong></td>
+                <td data-label="Precio premium">$145.000</td>
+                <td data-label="Incluye vuelos">
+                  <span class="bool-yes" aria-label="Sí incluye vuelos">✓</span>
+                </td>
+                <td data-label="Mejor época">
+                  <span class="tooltip-trigger" data-tooltip="Enero a abril: carnaval y clima seco. Evitar temporada de lluvias (dic-feb en altura).">Ene – Abr ℹ️</span>
+                </td>
+                <td data-label="Acción"><a href="contacto.html" class="btn btn--sm">Reservar</a></td>
+              </tr>
+              <tr class="row-featured">
+                <!--
+                  .row-featured: fila "más popular" con estilos especiales.
+                  Se puede marcar también con una clase en el <th> de la columna.
+                -->
+                <td data-label="Destino">
+                  <strong>Perito Moreno</strong>
+                  <span class="row-badge">🔥 Más popular</span>
+                </td>
+                <td data-label="Categoría"><span class="cat-pill cat-pill--naturaleza">Naturaleza</span></td>
+                <td data-label="Duración">7 días</td>
+                <td data-label="Precio base"><strong class="price-highlight">$142.000</strong></td>
+                <td data-label="Precio premium">$230.000</td>
+                <td data-label="Incluye vuelos"><span class="bool-yes" aria-label="Sí incluye vuelos">✓</span></td>
+                <td data-label="Mejor época">
+                  <span class="tooltip-trigger" data-tooltip="Todo el año, pero octubre a abril para mejor clima y acceso a excursiones.">Oct – Abr ℹ️</span>
+                </td>
+                <td data-label="Acción"><a href="contacto.html" class="btn btn--sm btn--primary">Reservar</a></td>
+              </tr>
+              <tr>
+                <td data-label="Destino"><strong>Cataratas del Iguazú</strong></td>
+                <td data-label="Categoría"><span class="cat-pill cat-pill--naturaleza">Naturaleza</span></td>
+                <td data-label="Duración">4 días</td>
+                <td data-label="Precio base"><strong class="price-highlight">$98.000</strong></td>
+                <td data-label="Precio premium">$165.000</td>
+                <td data-label="Incluye vuelos"><span class="bool-yes" aria-label="Sí incluye vuelos">✓</span></td>
+                <td data-label="Mejor época">
+                  <span class="tooltip-trigger" data-tooltip="Agosto a noviembre: menor caudal de agua y menos lluvia. Evitar enero (temporada alta y cara).">Ago – Nov ℹ️</span>
+                </td>
+                <td data-label="Acción"><a href="contacto.html" class="btn btn--sm">Reservar</a></td>
+              </tr>
+              <tr>
+                <td data-label="Destino"><strong>Ruta del Vino – Mendoza</strong></td>
+                <td data-label="Categoría"><span class="cat-pill cat-pill--gastronomico">Gastronómico</span></td>
+                <td data-label="Duración">4 días</td>
+                <td data-label="Precio base"><strong class="price-highlight">$76.000</strong></td>
+                <td data-label="Precio premium">$125.000</td>
+                <td data-label="Incluye vuelos"><span class="bool-no" aria-label="No incluye vuelos">✗</span></td>
+                <td data-label="Mejor época">
+                  <span class="tooltip-trigger" data-tooltip="Marzo a mayo: vendimia y colores de otoño. Precios accesibles fuera de temporada alta.">Mar – May ℹ️</span>
+                </td>
+                <td data-label="Acción"><a href="contacto.html" class="btn btn--sm">Reservar</a></td>
+              </tr>
+              <tr>
+                <td data-label="Destino"><strong>Bariloche</strong></td>
+                <td data-label="Categoría"><span class="cat-pill cat-pill--playa">Lagos</span></td>
+                <td data-label="Duración">6 días</td>
+                <td data-label="Precio base"><strong class="price-highlight">$110.000</strong></td>
+                <td data-label="Precio premium">$195.000</td>
+                <td data-label="Incluye vuelos"><span class="bool-yes" aria-label="Sí incluye vuelos">✓</span></td>
+                <td data-label="Mejor época">
+                  <span class="tooltip-trigger" data-tooltip="Julio para ski. Diciembre a febrero para senderismo y kayak. Marzo para colores otoñales.">Jul o Dic–Feb ℹ️</span>
+                </td>
+                <td data-label="Acción"><a href="contacto.html" class="btn btn--sm">Reservar</a></td>
+              </tr>
+              <tr>
+                <td data-label="Destino"><strong>Salta</strong></td>
+                <td data-label="Categoría"><span class="cat-pill cat-pill--cultural">Cultural</span></td>
+                <td data-label="Duración">5 días</td>
+                <td data-label="Precio base"><strong class="price-highlight">$72.000</strong></td>
+                <td data-label="Precio premium">$118.000</td>
+                <td data-label="Incluye vuelos"><span class="bool-yes" aria-label="Sí incluye vuelos">✓</span></td>
+                <td data-label="Mejor época">
+                  <span class="tooltip-trigger" data-tooltip="Mayo a octubre: clima seco y agradable. Carnaval en febrero si buscás festividades.">May – Oct ℹ️</span>
+                </td>
+                <td data-label="Acción"><a href="contacto.html" class="btn btn--sm">Reservar</a></td>
+              </tr>
+              <tr>
+                <td data-label="Destino"><strong>Luján</strong></td>
+                <td data-label="Categoría"><span class="cat-pill cat-pill--religioso">Religioso</span></td>
+                <td data-label="Duración">2 días</td>
+                <td data-label="Precio base"><strong class="price-highlight">$28.000</strong></td>
+                <td data-label="Precio premium">$45.000</td>
+                <td data-label="Incluye vuelos"><span class="bool-no" aria-label="No incluye vuelos">✗</span></td>
+                <td data-label="Mejor época">
+                  <span class="tooltip-trigger" data-tooltip="Todo el año. La primera semana de octubre es la peregrinación masiva.">Todo el año ℹ️</span>
+                </td>
+                <td data-label="Acción"><a href="contacto.html" class="btn btn--sm">Reservar</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Leyenda de la tabla -->
+        <div class="table-legend" aria-label="Referencias de la tabla">
+          <p><span class="bool-yes">✓</span> = Vuelos incluidos en el paquete base</p>
+          <p><span class="bool-no">✗</span> = Vuelos no incluidos (se cotizan por separado)</p>
+          <p>Precios orientativos por persona en habitación doble. Sujetos a disponibilidad y temporada.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Sección CTA -->
+    <section class="section cta-section" aria-label="Llamada a la acción">
+      <div class="section-inner">
+        <div class="cta-box">
+          <h2 class="cta-title">¿No encontrás lo que buscás?</h2>
+          <p class="cta-desc">Armamos paquetes a medida. Contanos tus fechas, presupuesto y destino soñado.</p>
+          <a href="contacto.html" class="btn btn--primary btn--lg">Solicitar cotización personalizada</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" aria-label="Pie de página">
+    <div class="footer-inner">
+      <div class="footer-col footer-col--brand"><a href="index.html" class="logo logo--footer"><svg width="32" height="32" class="logo-svg" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 4 C10 14, 10 26, 20 36 C30 26, 30 14, 20 4Z" fill="currentColor" opacity="0.3"/><line x1="4" y1="20" x2="36" y2="20" stroke="currentColor" stroke-width="2"/></svg><span class="logo-text">Wanderlust</span></a><p class="footer-tagline">Conectamos viajeros con experiencias únicas.</p></div>
+      <nav class="footer-col footer-col--links" aria-label="Links"><h3 class="footer-heading">Páginas</h3><ul role="list"><li><a href="destinos.html">Destinos</a></li><li><a href="agencias.html">Agencias</a></li><li><a href="precios.html">Precios</a></li><li><a href="blog.html">Blog</a></li><li><a href="contacto.html">Contacto</a></li></ul></nav>
+    </div>
+    <div class="footer-bottom"><div class="footer-bottom-inner"><p class="copyright">© <span id="current-year">2025</span> Wanderlust Turismo.</p></div></div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

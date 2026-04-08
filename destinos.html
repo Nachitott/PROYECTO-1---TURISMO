@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Explorá todos nuestros destinos: culturales, naturaleza, playa, gastronómicos y religiosos. Filtrá y encontrá tu viaje ideal." />
+  <title>Destinos – Wanderlust Turismo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body class="page-destinos" data-theme="light">
+
+  <!-- ===== HEADER (idéntico en todas las páginas) ===== -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo" aria-label="Wanderlust – Inicio">
+        <svg class="logo-svg" viewBox="0 0 40 40" width="32" height="32" aria-hidden="true">
+          <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path d="M20 4 C10 14, 10 26, 20 36 C30 26, 30 14, 20 4Z" fill="currentColor" opacity="0.3"/>
+          <line x1="4" y1="20" x2="36" y2="20" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        <span class="logo-text">Wanderlust</span>
+      </a>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <ul class="nav-list" role="list">
+          <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+          <li class="nav-item has-megamenu">
+            <a href="destinos.html" class="nav-link nav-link--active" aria-current="page" aria-haspopup="true" aria-expanded="false">Destinos <svg width="32" height="32" class="chevron" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></a>
+            <div class="megamenu" role="region">
+              <div class="megamenu-inner megamenu-inner--simple">
+                <div class="megamenu-col">
+                  <h3 class="megamenu-heading">Categorías</h3>
+                  <ul role="list">
+                    <li><a href="#cultural" class="megamenu-link">🏛️ Cultural</a></li>
+                    <li><a href="#naturaleza" class="megamenu-link">🌿 Naturaleza</a></li>
+                    <li><a href="#playa" class="megamenu-link">🏖️ Sol y Playa</a></li>
+                    <li><a href="#gastronomico" class="megamenu-link">🍽️ Gastronómico</a></li>
+                    <li><a href="#religioso" class="megamenu-link">⛪ Religioso</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item has-megamenu">
+            <a href="agencias.html" class="nav-link" aria-haspopup="true" aria-expanded="false">Agencias <svg width="32" height="32" class="chevron" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></a>
+            <div class="megamenu" role="region"><div class="megamenu-inner megamenu-inner--simple"><div class="megamenu-col"><ul role="list"><li><a href="agencias.html" class="megamenu-link">Todas las Agencias</a></li></ul></div></div></div>
+          </li>
+          <li class="nav-item has-megamenu">
+            <a href="precios.html" class="nav-link" aria-haspopup="true" aria-expanded="false">Precios <svg width="32" height="32" class="chevron" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></a>
+            <div class="megamenu" role="region"><div class="megamenu-inner megamenu-inner--simple"><div class="megamenu-col"><ul role="list"><li><a href="precios.html" class="megamenu-link">Comparador</a></li></ul></div></div></div>
+          </li>
+          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+          <li class="nav-item"><a href="contacto.html" class="nav-link nav-link--cta">Contacto</a></li>
+        </ul>
+      </nav>
+      <div class="header-controls">
+        <button class="btn-icon btn-darkmode" id="darkModeToggle" aria-label="Alternar modo oscuro">
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="btn-icon btn-hamburger" id="menuToggle" aria-label="Abrir menú" aria-controls="main-nav" aria-expanded="false">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!--
+      ──────────────────────────────────────────────────────────
+      PAGE HERO: encabezado interior (más compacto que el home).
+      ──────────────────────────────────────────────────────────
+    -->
+    <section class="page-hero" aria-label="Encabezado de destinos">
+      <div class="page-hero-content">
+        <p class="section-label">Explorá el mundo</p>
+        <h1 class="page-hero-title">Nuestros Destinos</h1>
+        <p class="page-hero-subtitle">Más de 500 destinos. Filtrá por categoría y encontrá tu próxima aventura.</p>
+      </div>
+    </section>
+
+    <!--
+      ──────────────────────────────────────────────────────────
+      SISTEMA DE FILTROS CSS-ONLY
+      Técnica: input[type="radio"] ocultos con labels visibles.
+      Al seleccionar un radio, el CSS usa el combinador ~
+      para mostrar/ocultar tarjetas con la clase correspondiente.
+
+      Estructura:
+        input#filter-all:checked ~ .gallery .card { display: block }
+        input#filter-all:checked ~ .gallery .card:not(.cat-cultural) { display: none }
+
+      Esto funciona porque el ~ (hermano general) en CSS selecciona
+      elementos que vienen DESPUÉS del input en el mismo padre.
+      Por eso los inputs DEBEN estar antes del .gallery en el HTML.
+      ──────────────────────────────────────────────────────────
+    -->
+    <section class="section destinations-gallery" aria-labelledby="gallery-title">
+      <div class="section-inner">
+
+        <!-- INPUTS DE FILTRO (ocultos visualmente, activos funcionalmente) -->
+        <input type="radio" name="dest-filter" id="filter-all"         class="filter-input" checked aria-label="Mostrar todos" />
+        <input type="radio" name="dest-filter" id="filter-cultural"    class="filter-input" aria-label="Filtrar cultural" />
+        <input type="radio" name="dest-filter" id="filter-naturaleza"  class="filter-input" aria-label="Filtrar naturaleza" />
+        <input type="radio" name="dest-filter" id="filter-playa"       class="filter-input" aria-label="Filtrar playa" />
+        <input type="radio" name="dest-filter" id="filter-gastronomico" class="filter-input" aria-label="Filtrar gastronómico" />
+        <input type="radio" name="dest-filter" id="filter-religioso"   class="filter-input" aria-label="Filtrar religioso" />
+
+        <header class="section-header">
+          <h2 class="section-title" id="gallery-title">Galería de Destinos</h2>
+
+          <!--
+            BARRA DE FILTROS:
+            Cada <label> activa el radio correspondiente.
+            .filter-btn--active se controla con CSS usando :checked.
+          -->
+          <div class="filter-bar" role="group" aria-label="Filtrar destinos por categoría">
+            <label for="filter-all"          class="filter-btn" id="anchor-all">🌍 Todos</label>
+            <label for="filter-cultural"     class="filter-btn" id="cultural">🏛️ Cultural</label>
+            <label for="filter-naturaleza"   class="filter-btn" id="naturaleza">🌿 Naturaleza</label>
+            <label for="filter-playa"        class="filter-btn" id="playa">🏖️ Sol y Playa</label>
+            <label for="filter-gastronomico" class="filter-btn" id="gastronomico">🍽️ Gastronómico</label>
+            <label for="filter-religioso"    class="filter-btn" id="religioso">⛪ Religioso</label>
+          </div>
+        </header>
+
+        <!--
+          GALERÍA MASONRY con CSS Grid:
+          Un "masonry layout" es una galería donde las imágenes tienen
+          alturas distintas (como Pinterest).
+          Técnica: CSS Grid con grid-template-rows: masonry
+          (experimental en Firefox) o usando grid-row: span N
+          en las tarjetas individuales para simular el efecto.
+
+          Cada .dest-card tiene también una clase .cat-XXXX
+          que el CSS usa para mostrar/ocultar según el filtro activo.
+        -->
+        <div class="masonry-gallery" role="list" aria-label="Galería de destinos">
+
+          <!-- Tarjetas con clase de categoría para el filtro CSS -->
+          <article class="dest-card cat-cultural cat-naturaleza" role="listitem">
+            <div class="dest-card-image">
+              <img src="img/dest-jujuy.jpg" alt="Quebrada de Humahuaca – montañas de colores" loading="lazy" width="400" height="500" />
+              <div class="dest-card-overlay">
+                <h3 class="dest-card-title">Quebrada de Humahuaca</h3>
+                <p>Jujuy, Argentina</p>
+                <a href="#" class="btn btn--sm">Ver destino</a>
+              </div>
+              <span class="dest-card-badge cat-badge--cultural">Cultural</span>
+            </div>
+          </article>
+
+          <article class="dest-card cat-naturaleza" role="listitem">
+            <div class="dest-card-image">
+              <img src="img/dest-patagonia.jpg" alt="Glaciar Perito Moreno" loading="lazy" width="400" height="280" />
+              <div class="dest-card-overlay">
+                <h3 class="dest-card-title">Perito Moreno</h3>
+                <p>Santa Cruz, Argentina</p>
+                <a href="#" class="btn btn--sm">Ver destino</a>
+              </div>
+              <span class="dest-card-badge cat-badge--naturaleza">Naturaleza</span>
+            </div>
+          </article>
+
+          <article class="dest-card cat-playa" role="listitem">
+            <div class="dest-card-image">
+              <img src="img/dest-carilo.jpg" alt="Playa de Cariló con dunas y pinos" loading="lazy" width="400" height="400" />
+              <div class="dest-card-overlay">
+                <h3 class="dest-card-title">Cariló</h3>
+                <p>Buenos Aires, Argentina</p>
+                <a href="#" class="btn btn--sm">Ver destino</a>
+              </div>
+              <span class="dest-card-badge cat-badge--playa">Sol y Playa</span>
+            </div>
+          </article>
+
+          <article class="dest-card cat-gastronomico" role="listitem">
+            <div class="dest-card-image">
+              <img src="img/dest-mendoza.jpg" alt="Bodega y viñedos en Mendoza" loading="lazy" width="400" height="320" />
+              <div class="dest-card-overlay">
+                <h3 class="dest-card-title">Ruta del Vino</h3>
+                <p>Mendoza, Argentina</p>
+                <a href="#" class="btn btn--sm">Ver destino</a>
+              </div>
+              <span class="dest-card-badge cat-badge--gastronomico">Gastronómico</span>
+            </div>
+          </article>
+
+          <article class="dest-card cat-naturaleza cat-playa" role="listitem">
+            <div class="dest-card-image">
+              <img src="img/dest-iguazu.jpg" alt="Cataratas del Iguazú desde el aire" loading="lazy" width="400" height="500" />
+              <div class="dest-card-overlay">
+                <h3 class="dest-card-title">Cataratas del Iguazú</h3>
+                <p>Misiones, Argentina</p>
+                <a href="#" class="btn btn--sm">Ver destino</a>
+              </div>
+              <span class="dest-card-badge cat-badge--naturaleza">Naturaleza</span>
+            </div>
+          </article>
+
+          <article class="dest-card cat-religioso cat-cultural" role="listitem">
+            <div class="dest-card-image">
+              <img src="img/dest-lujan.jpg" alt="Basílica de Luján iluminada" loading="lazy" width="400" height="350" />
+              <div class="dest-card-overlay">
+                <h3 class="dest-card-title">Luján</h3>
+                <p>Buenos Aires, Argentina</p>
+                <a href="#" class="btn btn--sm">Ver destino</a>
+              </div>
+              <span class="dest-card-badge cat-badge--religioso">Religioso</span>
+            </div>
+          </article>
+
+          <article class="dest-card cat-cultural" role="listitem">
+            <div class="dest-card-image">
+              <img src="img/dest-salta.jpg" alt="Plaza principal de Salta con iglesia colonial" loading="lazy" width="400" height="300" />
+              <div class="dest-card-overlay">
+                <h3 class="dest-card-title">Salta la Linda</h3>
+                <p>Salta, Argentina</p>
+                <a href="#" class="btn btn--sm">Ver destino</a>
+              </div>
+              <span class="dest-card-badge cat-badge--cultural">Cultural</span>
+            </div>
+          </article>
+
+          <article class="dest-card cat-naturaleza" role="listitem">
+            <div class="dest-card-image">
+              <img src="img/dest-bariloche.jpg" alt="Lago y montañas nevadas en Bariloche" loading="lazy" width="400" height="450" />
+              <div class="dest-card-overlay">
+                <h3 class="dest-card-title">Bariloche</h3>
+                <p>Río Negro, Argentina</p>
+                <a href="#" class="btn btn--sm">Ver destino</a>
+              </div>
+              <span class="dest-card-badge cat-badge--naturaleza">Naturaleza</span>
+            </div>
+          </article>
+
+          <article class="dest-card cat-gastronomico" role="listitem">
+            <div class="dest-card-image">
+              <img src="img/dest-baires.jpg" alt="Restaurante típico en San Telmo, Buenos Aires" loading="lazy" width="400" height="300" />
+              <div class="dest-card-overlay">
+                <h3 class="dest-card-title">Buenos Aires Gourmet</h3>
+                <p>Buenos Aires, Argentina</p>
+                <a href="#" class="btn btn--sm">Ver destino</a>
+              </div>
+              <span class="dest-card-badge cat-badge--gastronomico">Gastronómico</span>
+            </div>
+          </article>
+
+          <article class="dest-card cat-playa" role="listitem">
+            <div class="dest-card-image">
+              <img src="img/dest-mdp.jpg" alt="Playa de Mar del Plata" loading="lazy" width="400" height="380" />
+              <div class="dest-card-overlay">
+                <h3 class="dest-card-title">Mar del Plata</h3>
+                <p>Buenos Aires, Argentina</p>
+                <a href="#" class="btn btn--sm">Ver destino</a>
+              </div>
+              <span class="dest-card-badge cat-badge--playa">Sol y Playa</span>
+            </div>
+          </article>
+
+          <article class="dest-card cat-religioso" role="listitem">
+            <div class="dest-card-image">
+              <img src="img/dest-cordoba.jpg" alt="Jesuitas de Córdoba – Manzana Jesuítica" loading="lazy" width="400" height="420" />
+              <div class="dest-card-overlay">
+                <h3 class="dest-card-title">Manzana Jesuítica</h3>
+                <p>Córdoba, Argentina</p>
+                <a href="#" class="btn btn--sm">Ver destino</a>
+              </div>
+              <span class="dest-card-badge cat-badge--religioso">Religioso</span>
+            </div>
+          </article>
+
+          <article class="dest-card cat-cultural cat-gastronomico" role="listitem">
+            <div class="dest-card-image">
+              <img src="img/dest-tucuman.jpg" alt="Mercado del Norte de Tucumán" loading="lazy" width="400" height="340" />
+              <div class="dest-card-overlay">
+                <h3 class="dest-card-title">Tucumán</h3>
+                <p>Tucumán, Argentina</p>
+                <a href="#" class="btn btn--sm">Ver destino</a>
+              </div>
+              <span class="dest-card-badge cat-badge--cultural">Cultural</span>
+            </div>
+          </article>
+
+        </div><!-- /.masonry-gallery -->
+
+      </div><!-- /.section-inner -->
+
+      <!--
+        ──────────────────────────────────────────────────────────
+        TABLA RESPONSIVA DE PRECIOS Y DESTINOS
+        Técnica CSS:
+        - En escritorio: tabla normal con <table>.
+        - En móvil: se transforma en tarjetas con display:block
+          y data-label en cada <td> para mostrar el encabezado.
+        ──────────────────────────────────────────────────────────
+      -->
+      <div class="section-inner">
+        <header class="section-header" style="margin-top: 4rem;">
+          <p class="section-label">Compará antes de elegir</p>
+          <h2 class="section-title">Precios y Destinos</h2>
+        </header>
+
+        <div class="table-responsive-wrapper" role="region" aria-label="Tabla de precios de destinos" tabindex="0">
+          <table class="prices-table">
+            <caption class="sr-only">Tabla de precios por destino, categoría, duración e incluye</caption>
+            <thead>
+              <tr>
+                <th scope="col">Destino</th>
+                <th scope="col">Categoría</th>
+                <th scope="col">Duración</th>
+                <th scope="col">Precio desde</th>
+                <th scope="col">Incluye</th>
+                <th scope="col">Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Destino">Quebrada de Humahuaca</td>
+                <td data-label="Categoría"><span class="cat-pill cat-pill--cultural">Cultural</span></td>
+                <td data-label="Duración">5 días</td>
+                <td data-label="Precio desde"><strong>$85.000</strong></td>
+                <td data-label="Incluye">Hotel + Traslados + Guía</td>
+                <td data-label="Acción"><a href="contacto.html" class="btn btn--sm">Reservar</a></td>
+              </tr>
+              <tr>
+                <td data-label="Destino">Perito Moreno</td>
+                <td data-label="Categoría"><span class="cat-pill cat-pill--naturaleza">Naturaleza</span></td>
+                <td data-label="Duración">7 días</td>
+                <td data-label="Precio desde"><strong>$142.000</strong></td>
+                <td data-label="Incluye">Hotel + Vuelos + Excursiones</td>
+                <td data-label="Acción"><a href="contacto.html" class="btn btn--sm">Reservar</a></td>
+              </tr>
+              <tr>
+                <td data-label="Destino">Cataratas del Iguazú</td>
+                <td data-label="Categoría"><span class="cat-pill cat-pill--naturaleza">Naturaleza</span></td>
+                <td data-label="Duración">4 días</td>
+                <td data-label="Precio desde"><strong>$98.000</strong></td>
+                <td data-label="Incluye">Hotel + Traslados + Entradas</td>
+                <td data-label="Acción"><a href="contacto.html" class="btn btn--sm">Reservar</a></td>
+              </tr>
+              <tr>
+                <td data-label="Destino">Ruta del Vino</td>
+                <td data-label="Categoría"><span class="cat-pill cat-pill--gastronomico">Gastronómico</span></td>
+                <td data-label="Duración">4 días</td>
+                <td data-label="Precio desde"><strong>$76.000</strong></td>
+                <td data-label="Incluye">Hotel + Catas + Cenas</td>
+                <td data-label="Acción"><a href="contacto.html" class="btn btn--sm">Reservar</a></td>
+              </tr>
+              <tr>
+                <td data-label="Destino">Bariloche</td>
+                <td data-label="Categoría"><span class="cat-pill cat-pill--playa">Sol y Playa</span></td>
+                <td data-label="Duración">6 días</td>
+                <td data-label="Precio desde"><strong>$110.000</strong></td>
+                <td data-label="Incluye">Hotel + Ski pass + Traslados</td>
+                <td data-label="Acción"><a href="contacto.html" class="btn btn--sm">Reservar</a></td>
+              </tr>
+              <tr>
+                <td data-label="Destino">Luján</td>
+                <td data-label="Categoría"><span class="cat-pill cat-pill--religioso">Religioso</span></td>
+                <td data-label="Duración">2 días</td>
+                <td data-label="Precio desde"><strong>$28.000</strong></td>
+                <td data-label="Incluye">Transporte + Guía espiritual</td>
+                <td data-label="Acción"><a href="contacto.html" class="btn btn--sm">Reservar</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer" aria-label="Pie de página">
+    <div class="footer-inner">
+      <div class="footer-col footer-col--brand">
+        <a href="index.html" class="logo logo--footer"><svg width="32" height="32" class="logo-svg" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 4 C10 14, 10 26, 20 36 C30 26, 30 14, 20 4Z" fill="currentColor" opacity="0.3"/><line x1="4" y1="20" x2="36" y2="20" stroke="currentColor" stroke-width="2"/></svg><span class="logo-text">Wanderlust</span></a>
+        <p class="footer-tagline">Conectamos viajeros con experiencias únicas.</p>
+        <nav class="social-links" aria-label="Redes sociales"><a href="#" class="social-link" aria-label="Instagram"><svg width="32" height="32" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a></nav>
+      </div>
+      <nav class="footer-col footer-col--links" aria-label="Links de destinos"><h3 class="footer-heading">Destinos</h3><ul role="list"><li><a href="#cultural">Cultural</a></li><li><a href="#naturaleza">Naturaleza</a></li><li><a href="#playa">Sol y Playa</a></li><li><a href="#gastronomico">Gastronómico</a></li><li><a href="#religioso">Religioso</a></li></ul></nav>
+      <nav class="footer-col footer-col--links" aria-label="Links de empresa"><h3 class="footer-heading">Empresa</h3><ul role="list"><li><a href="agencias.html">Agencias</a></li><li><a href="precios.html">Precios</a></li><li><a href="blog.html">Blog</a></li><li><a href="contacto.html">Contacto</a></li></ul></nav>
+      <div class="footer-col footer-col--newsletter"><h3 class="footer-heading">Newsletter</h3><form class="newsletter-form" action="#" method="post" novalidate><div class="newsletter-input-wrapper"><label for="footer-email-dest" class="sr-only">Email</label><input type="email" id="footer-email-dest" name="email" placeholder="tu@email.com" required /><button type="submit" class="btn btn--primary">Suscribirse</button></div></form></div>
+    </div>
+    <div class="footer-map" aria-label="Mapa">
+      <iframe title="Mapa Wanderlust" src="https://www.openstreetmap.org/export/embed.html?bbox=-65.3150%2C-24.2050%2C-65.2850%2C-24.1750&layer=mapnik" width="100%" height="250" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="footer-bottom"><div class="footer-bottom-inner"><p class="copyright">© <span id="current-year">2025</span> Wanderlust Turismo.</p><nav aria-label="Legal"><a href="#">Privacidad</a><a href="#">Términos</a></nav></div></div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

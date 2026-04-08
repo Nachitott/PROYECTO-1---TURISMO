@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Blog de turismo Wanderlust – artículos, consejos, guías de viaje y experiencias de nuestros viajeros." />
+  <title>Blog – Wanderlust Turismo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body class="page-blog" data-theme="light">
+
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo" aria-label="Wanderlust – Inicio">
+        <svg width="32" height="32" class="logo-svg" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 4 C10 14, 10 26, 20 36 C30 26, 30 14, 20 4Z" fill="currentColor" opacity="0.3"/><line x1="4" y1="20" x2="36" y2="20" stroke="currentColor" stroke-width="2"/></svg>
+        <span class="logo-text">Wanderlust</span>
+      </a>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <ul class="nav-list" role="list">
+          <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+          <li class="nav-item has-megamenu"><a href="destinos.html" class="nav-link" aria-haspopup="true" aria-expanded="false">Destinos <svg width="32" height="32" class="chevron" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></a><div class="megamenu" role="region"><div class="megamenu-inner megamenu-inner--simple"><div class="megamenu-col"><ul role="list"><li><a href="destinos.html" class="megamenu-link">Ver todos</a></li></ul></div></div></div></li>
+          <li class="nav-item has-megamenu"><a href="agencias.html" class="nav-link" aria-haspopup="true" aria-expanded="false">Agencias <svg width="32" height="32" class="chevron" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></a><div class="megamenu" role="region"><div class="megamenu-inner megamenu-inner--simple"><div class="megamenu-col"><ul role="list"><li><a href="agencias.html" class="megamenu-link">Ver agencias</a></li></ul></div></div></div></li>
+          <li class="nav-item has-megamenu"><a href="precios.html" class="nav-link" aria-haspopup="true" aria-expanded="false">Precios <svg width="32" height="32" class="chevron" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></a><div class="megamenu" role="region"><div class="megamenu-inner megamenu-inner--simple"><div class="megamenu-col"><ul role="list"><li><a href="precios.html" class="megamenu-link">Comparador</a></li></ul></div></div></div></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link nav-link--active" aria-current="page">Blog</a></li>
+          <li class="nav-item"><a href="contacto.html" class="nav-link nav-link--cta">Contacto</a></li>
+        </ul>
+      </nav>
+      <div class="header-controls">
+        <button class="btn-icon btn-darkmode" id="darkModeToggle" aria-label="Alternar modo oscuro"><svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+        <button class="btn-icon btn-hamburger" id="menuToggle" aria-label="Abrir menú" aria-controls="main-nav" aria-expanded="false"><span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!--
+      BLOG HEADER: estilo cabecera de periódico
+      ──────────────────────────────────────────────────────────
+    -->
+    <section class="blog-masthead" aria-label="Encabezado del blog">
+      <div class="blog-masthead-inner">
+        <p class="blog-edition">Edición Digital · <time datetime="2025-04">Abril 2025</time></p>
+        <h1 class="blog-masthead-title">The Wanderlust Post</h1>
+        <p class="blog-masthead-subtitle">Historias, guías y consejos de viaje para el viajero curioso</p>
+        <div class="blog-masthead-rule" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!--
+      ──────────────────────────────────────────────────────────
+      SISTEMA DE TAGS / CATEGORÍAS PARA FILTRADO CSS-ONLY
+      Misma técnica que en destinos:
+      inputs radio ocultos + labels visibles + combinador ~
+      para mostrar/ocultar artículos.
+      ──────────────────────────────────────────────────────────
+    -->
+    <section class="section blog-section" aria-labelledby="blog-title">
+      <div class="section-inner">
+
+        <!-- FILTROS CSS-ONLY: inputs ANTES del contenido -->
+        <input type="radio" name="blog-filter" id="blog-all"          class="filter-input blog-filter" checked aria-label="Todos los artículos" />
+        <input type="radio" name="blog-filter" id="blog-guias"        class="filter-input blog-filter" aria-label="Guías de viaje" />
+        <input type="radio" name="blog-filter" id="blog-consejos"     class="filter-input blog-filter" aria-label="Consejos" />
+        <input type="radio" name="blog-filter" id="blog-gastronomia"  class="filter-input blog-filter" aria-label="Gastronomía" />
+        <input type="radio" name="blog-filter" id="blog-naturaleza"   class="filter-input blog-filter" aria-label="Naturaleza" />
+        <input type="radio" name="blog-filter" id="blog-cultura"      class="filter-input blog-filter" aria-label="Cultura" />
+
+        <h2 class="sr-only" id="blog-title">Artículos del blog</h2>
+
+        <!-- Barra de tags/categorías -->
+        <nav class="blog-tags-bar" aria-label="Filtrar artículos por categoría">
+          <label for="blog-all"         class="blog-tag">📰 Todos</label>
+          <label for="blog-guias"       class="blog-tag">🗺️ Guías</label>
+          <label for="blog-consejos"    class="blog-tag">💡 Consejos</label>
+          <label for="blog-gastronomia" class="blog-tag">🍽️ Gastronomía</label>
+          <label for="blog-naturaleza"  class="blog-tag">🌿 Naturaleza</label>
+          <label for="blog-cultura"     class="blog-tag">🏛️ Cultura</label>
+        </nav>
+
+        <!--
+          LAYOUT NEWSPAPER con CSS Grid:
+          El diseño "tipo periódico" se logra con CSS Grid y
+          grid-column / grid-row para dar diferentes tamaños a los artículos.
+          El artículo principal ocupa más columnas y filas.
+          Los secundarios se acomodan alrededor.
+
+          SCROLL REVEAL:
+          Cada .article-card tiene la clase .reveal.
+          JS con IntersectionObserver añade la clase .is-visible
+          cuando el artículo entra al viewport.
+          El CSS hace: .reveal { opacity: 0; transform: translateY(30px); }
+                       .reveal.is-visible { opacity: 1; transform: none; transition: ... }
+        -->
+        <div class="newspaper-grid" role="list">
+
+          <!-- ARTÍCULO PRINCIPAL (featured, más grande) -->
+          <article class="article-card article-card--featured blog-cat-guias blog-cat-naturaleza reveal" role="listitem">
+            <a href="#articulo-1" class="article-card-link">
+              <div class="article-image-wrapper">
+                <img
+                  src="img/blog-humahuaca.jpg"
+                  alt="Cerro de los Siete Colores en Purmamarca, Jujuy"
+                  loading="lazy"
+                  width="800"
+                  height="450"
+                />
+                <span class="article-category-badge">🗺️ Guías</span>
+              </div>
+              <div class="article-body">
+                <div class="article-meta">
+                  <time datetime="2025-03-15" class="article-date">15 de marzo, 2025</time>
+                  <span class="article-read-time">· 8 min de lectura</span>
+                </div>
+                <h2 class="article-title">Guía completa para recorrer la Quebrada de Humahuaca: lo que nadie te cuenta</h2>
+                <p class="article-excerpt">
+                  Desde los mejores miradores hasta los pueblos que no aparecen en las guías turísticas. 
+                  Todo lo que necesitás saber para una experiencia auténtica en el norte argentino.
+                </p>
+                <div class="article-footer">
+                  <div class="article-author">
+                    <!--
+                      AVATAR CON CSS:
+                      Creados con background-color + iniciales en pseudo-elementos.
+                      No se necesita imagen.
+                    -->
+                    <div class="avatar" data-initials="LP" aria-hidden="true"></div>
+                    <span class="author-name">Laura Paz</span>
+                  </div>
+                  <span class="article-tags">
+                    <span class="article-tag">Jujuy</span>
+                    <span class="article-tag">Naturaleza</span>
+                    <span class="article-tag">Guía</span>
+                  </span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- ARTÍCULO SECUNDARIO 1 -->
+          <article class="article-card blog-cat-gastronomia reveal" role="listitem">
+            <a href="#articulo-2" class="article-card-link">
+              <div class="article-image-wrapper">
+                <img src="img/blog-mendoza.jpg" alt="Copa de vino tinto Malbec con viñedos de fondo en Mendoza" loading="lazy" width="400" height="240" />
+                <span class="article-category-badge">🍽️ Gastronomía</span>
+              </div>
+              <div class="article-body">
+                <div class="article-meta">
+                  <time datetime="2025-03-08" class="article-date">8 de marzo, 2025</time>
+                </div>
+                <h3 class="article-title">Los mejores Malbec de Mendoza: guía de bodegas boutique para el 2025</h3>
+                <p class="article-excerpt">Cinco bodegas pequeñas, con producción limitada y vistas que valen el viaje.</p>
+                <div class="article-footer">
+                  <div class="article-author">
+                    <div class="avatar" data-initials="CR" aria-hidden="true"></div>
+                    <span class="author-name">Carlos Rivas</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- ARTÍCULO SECUNDARIO 2 -->
+          <article class="article-card blog-cat-consejos reveal" role="listitem">
+            <a href="#articulo-3" class="article-card-link">
+              <div class="article-image-wrapper">
+                <img src="img/blog-consejos.jpg" alt="Mochila de viajero lista con documentos y objetos de viaje" loading="lazy" width="400" height="240" />
+                <span class="article-category-badge">💡 Consejos</span>
+              </div>
+              <div class="article-body">
+                <div class="article-meta">
+                  <time datetime="2025-02-20" class="article-date">20 de febrero, 2025</time>
+                </div>
+                <h3 class="article-title">10 errores que no podés cometer antes de tu primer viaje al sur argentino</h3>
+                <p class="article-excerpt">Desde el seguro de viaje hasta la ropa adecuada: lo que nadie te avisa hasta que es tarde.</p>
+                <div class="article-footer">
+                  <div class="article-author">
+                    <div class="avatar" data-initials="MG" aria-hidden="true"></div>
+                    <span class="author-name">María González</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- ARTÍCULO SECUNDARIO 3 -->
+          <article class="article-card blog-cat-naturaleza reveal" role="listitem">
+            <a href="#articulo-4" class="article-card-link">
+              <div class="article-image-wrapper">
+                <img src="img/blog-iguazu.jpg" alt="Amanecer sobre las Cataratas del Iguazú desde el lado argentino" loading="lazy" width="400" height="240" />
+                <span class="article-category-badge">🌿 Naturaleza</span>
+              </div>
+              <div class="article-body">
+                <div class="article-meta">
+                  <time datetime="2025-02-10" class="article-date">10 de febrero, 2025</time>
+                </div>
+                <h3 class="article-title">Amanecer en las Cataratas: cómo conseguir el circuito antes de que lleguen los turistas</h3>
+                <p class="article-excerpt">El secreto que conocen muy pocos viajeros para vivir las cataratas en silencio y luz perfecta.</p>
+                <div class="article-footer">
+                  <div class="article-author">
+                    <div class="avatar" data-initials="AR" aria-hidden="true"></div>
+                    <span class="author-name">Agustín Robles</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- ARTÍCULO SECUNDARIO 4 -->
+          <article class="article-card blog-cat-cultura reveal" role="listitem">
+            <a href="#articulo-5" class="article-card-link">
+              <div class="article-image-wrapper">
+                <img src="img/blog-salta.jpg" alt="Procesión del Señor del Milagro en Salta, multitud y flores" loading="lazy" width="400" height="240" />
+                <span class="article-category-badge">🏛️ Cultura</span>
+              </div>
+              <div class="article-body">
+                <div class="article-meta">
+                  <time datetime="2025-01-28" class="article-date">28 de enero, 2025</time>
+                </div>
+                <h3 class="article-title">El Señor del Milagro: la festividad que paraliza a Salta cada septiembre</h3>
+                <p class="article-excerpt">Historia, devoción y color en una de las celebraciones religiosas más importantes del país.</p>
+                <div class="article-footer">
+                  <div class="article-author">
+                    <div class="avatar" data-initials="SP" aria-hidden="true"></div>
+                    <span class="author-name">Sofía Peralta</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- ARTÍCULO SECUNDARIO 5 -->
+          <article class="article-card blog-cat-consejos blog-cat-guias reveal" role="listitem">
+            <a href="#articulo-6" class="article-card-link">
+              <div class="article-image-wrapper">
+                <img src="img/blog-packing.jpg" alt="Lista de equipaje y maleta abierta lista para un viaje de aventura" loading="lazy" width="400" height="240" />
+                <span class="article-category-badge">💡 Consejos</span>
+              </div>
+              <div class="article-body">
+                <div class="article-meta">
+                  <time datetime="2025-01-15" class="article-date">15 de enero, 2025</time>
+                </div>
+                <h3 class="article-title">Packing definitivo para Patagonia: qué llevar según la época del año</h3>
+                <p class="article-excerpt">La lista verificada por nuestros guías locales. Ni de más, ni de menos.</p>
+                <div class="article-footer">
+                  <div class="article-author">
+                    <div class="avatar" data-initials="LP" aria-hidden="true"></div>
+                    <span class="author-name">Laura Paz</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </article>
+
+        </div><!-- /.newspaper-grid -->
+
+        <!--
+          ──────────────────────────────────────────────────────────
+          SECCIÓN DE COMENTARIOS
+          Con avatares CSS y pseudo-elementos.
+
+          Los avatares se crean 100% con CSS:
+          .avatar { background-color: var(--color-accent); border-radius: 50%; }
+          .avatar::after { content: attr(data-initials); ... }
+          No necesitamos imágenes de avatar.
+
+          El sistema de comentarios anidados (respuestas) se hace con
+          margin-left y border-left en CSS.
+          ──────────────────────────────────────────────────────────
+        -->
+        <section class="comments-section" aria-labelledby="comments-title">
+          <h2 class="comments-title" id="comments-title">
+            <span>Comentarios</span>
+            <span class="comments-count">(4)</span>
+          </h2>
+
+          <ol class="comments-list" role="list">
+
+            <li class="comment">
+              <div class="comment-avatar" data-initials="MR" aria-hidden="true"></div>
+              <div class="comment-body">
+                <div class="comment-header">
+                  <strong class="comment-author">Marcos Rodríguez</strong>
+                  <time datetime="2025-03-16" class="comment-date">hace 2 días</time>
+                </div>
+                <p class="comment-text">
+                  Excelente artículo. Yo fui en abril del año pasado y la Quebrada en otoño es algo que no tiene palabras. 
+                  Los colores de la montaña con la luz de la tarde son increíbles.
+                </p>
+                <button class="comment-reply-btn" aria-label="Responder a Marcos">Responder</button>
+
+                <!-- Respuesta anidada -->
+                <ol class="comments-list comments-list--nested" role="list">
+                  <li class="comment comment--reply">
+                    <div class="comment-avatar comment-avatar--sm" data-initials="LP" aria-hidden="true"></div>
+                    <div class="comment-body">
+                      <div class="comment-header">
+                        <strong class="comment-author">Laura Paz <span class="author-badge">Autora</span></strong>
+                        <time datetime="2025-03-16" class="comment-date">hace 1 día</time>
+                      </div>
+                      <p class="comment-text">
+                        Totalmente, Marcos. Abril es una de mis épocas favoritas. 
+                        El contraste con el cielo azul profundo es único. ¡Gracias por compartir!
+                      </p>
+                    </div>
+                  </li>
+                </ol>
+              </div>
+            </li>
+
+            <li class="comment">
+              <div class="comment-avatar" data-initials="VT" aria-hidden="true"></div>
+              <div class="comment-body">
+                <div class="comment-header">
+                  <strong class="comment-author">Valentina Torres</strong>
+                  <time datetime="2025-03-15" class="comment-date">hace 3 días</time>
+                </div>
+                <p class="comment-text">
+                  Qué bueno ver una guía que menciona los pueblos pequeños. Iruya es absolutamente 
+                  mágico y casi nadie lo incluye en su itinerario. ¡Muy recomendado!
+                </p>
+                <button class="comment-reply-btn" aria-label="Responder a Valentina">Responder</button>
+              </div>
+            </li>
+
+            <li class="comment">
+              <div class="comment-avatar" data-initials="JM" aria-hidden="true"></div>
+              <div class="comment-body">
+                <div class="comment-header">
+                  <strong class="comment-author">Juan Manuel Díaz</strong>
+                  <time datetime="2025-03-14" class="comment-date">hace 4 días</time>
+                </div>
+                <p class="comment-text">
+                  ¿Cuántos días recomendarían para recorrer todo sin apuro? ¿Con 5 días es suficiente?
+                </p>
+                <button class="comment-reply-btn" aria-label="Responder a Juan Manuel">Responder</button>
+
+                <ol class="comments-list comments-list--nested" role="list">
+                  <li class="comment comment--reply">
+                    <div class="comment-avatar comment-avatar--sm" data-initials="LP" aria-hidden="true"></div>
+                    <div class="comment-body">
+                      <div class="comment-header">
+                        <strong class="comment-author">Laura Paz <span class="author-badge">Autora</span></strong>
+                        <time datetime="2025-03-15" class="comment-date">hace 3 días</time>
+                      </div>
+                      <p class="comment-text">
+                        ¡Hola Juan Manuel! 5 días es suficiente para los puntos principales 
+                        (Tilcara, Purmamarca, Humahuaca). Si querés agregar Iruya, sumá 2 días más.
+                      </p>
+                    </div>
+                  </li>
+                </ol>
+              </div>
+            </li>
+
+          </ol><!-- /.comments-list -->
+
+          <!-- Formulario de nuevo comentario -->
+          <div class="comment-form-wrapper">
+            <h3 class="comment-form-title">Dejá tu comentario</h3>
+            <form class="comment-form" action="#" method="post" novalidate aria-label="Formulario de comentario">
+              <div class="form-grid">
+                <div class="form-field">
+                  <input type="text" id="comment-name" name="name" required placeholder=" " minlength="2" aria-required="true" />
+                  <label for="comment-name">Tu nombre *</label>
+                  <span class="form-error" role="alert">Ingresá tu nombre.</span>
+                </div>
+                <div class="form-field">
+                  <input type="email" id="comment-email" name="email" required placeholder=" " aria-required="true" />
+                  <label for="comment-email">Tu email * <small>(no se publica)</small></label>
+                  <span class="form-error" role="alert">Ingresá un email válido.</span>
+                </div>
+                <div class="form-field form-field--full">
+                  <textarea id="comment-text" name="text" required rows="4" placeholder=" " minlength="10" aria-required="true"></textarea>
+                  <label for="comment-text">Tu comentario *</label>
+                  <span class="form-error" role="alert">El comentario debe tener al menos 10 caracteres.</span>
+                </div>
+              </div>
+              <button type="submit" class="btn btn--primary">Publicar comentario</button>
+            </form>
+          </div>
+
+        </section><!-- /.comments-section -->
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" aria-label="Pie de página">
+    <div class="footer-inner">
+      <div class="footer-col footer-col--brand"><a href="index.html" class="logo logo--footer"><svg width="32" height="32" class="logo-svg" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 4 C10 14, 10 26, 20 36 C30 26, 30 14, 20 4Z" fill="currentColor" opacity="0.3"/><line x1="4" y1="20" x2="36" y2="20" stroke="currentColor" stroke-width="2"/></svg><span class="logo-text">Wanderlust</span></a><p class="footer-tagline">Conectamos viajeros con experiencias únicas.</p></div>
+      <nav class="footer-col footer-col--links" aria-label="Links"><h3 class="footer-heading">Páginas</h3><ul role="list"><li><a href="destinos.html">Destinos</a></li><li><a href="agencias.html">Agencias</a></li><li><a href="precios.html">Precios</a></li><li><a href="blog.html">Blog</a></li><li><a href="contacto.html">Contacto</a></li></ul></nav>
+      <div class="footer-col footer-col--newsletter"><h3 class="footer-heading">Newsletter</h3><form class="newsletter-form" action="#" method="post" novalidate><div class="newsletter-input-wrapper"><label for="footer-email-blog" class="sr-only">Email</label><input type="email" id="footer-email-blog" name="email" placeholder="tu@email.com" required /><button type="submit" class="btn btn--primary">Suscribirse</button></div></form></div>
+    </div>
+    <div class="footer-bottom"><div class="footer-bottom-inner"><p class="copyright">© <span id="current-year">2025</span> Wanderlust Turismo.</p><nav aria-label="Legal"><a href="#">Privacidad</a><a href="#">Términos</a></nav></div></div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

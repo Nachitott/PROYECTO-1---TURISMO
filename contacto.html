@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contactá a Wanderlust Turismo. Formulario de contacto avanzado con validación en tiempo real." />
+  <title>Contacto – Wanderlust Turismo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body class="page-contacto" data-theme="light">
+
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo" aria-label="Wanderlust – Inicio">
+        <svg width="32" height="32" class="logo-svg" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 4 C10 14, 10 26, 20 36 C30 26, 30 14, 20 4Z" fill="currentColor" opacity="0.3"/><line x1="4" y1="20" x2="36" y2="20" stroke="currentColor" stroke-width="2"/></svg>
+        <span class="logo-text">Wanderlust</span>
+      </a>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <ul class="nav-list" role="list">
+          <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+          <li class="nav-item has-megamenu"><a href="destinos.html" class="nav-link" aria-haspopup="true" aria-expanded="false">Destinos <svg width="32" height="32" class="chevron" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></a><div class="megamenu" role="region"><div class="megamenu-inner megamenu-inner--simple"><div class="megamenu-col"><ul role="list"><li><a href="destinos.html" class="megamenu-link">Ver todos</a></li></ul></div></div></div></li>
+          <li class="nav-item has-megamenu"><a href="agencias.html" class="nav-link" aria-haspopup="true" aria-expanded="false">Agencias <svg width="32" height="32" class="chevron" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></a><div class="megamenu" role="region"><div class="megamenu-inner megamenu-inner--simple"><div class="megamenu-col"><ul role="list"><li><a href="agencias.html" class="megamenu-link">Ver agencias</a></li></ul></div></div></div></li>
+          <li class="nav-item has-megamenu"><a href="precios.html" class="nav-link" aria-haspopup="true" aria-expanded="false">Precios <svg width="32" height="32" class="chevron" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></a><div class="megamenu" role="region"><div class="megamenu-inner megamenu-inner--simple"><div class="megamenu-col"><ul role="list"><li><a href="precios.html" class="megamenu-link">Comparador</a></li></ul></div></div></div></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+          <li class="nav-item"><a href="contacto.html" class="nav-link nav-link--active nav-link--cta" aria-current="page">Contacto</a></li>
+        </ul>
+      </nav>
+      <div class="header-controls">
+        <button class="btn-icon btn-darkmode" id="darkModeToggle" aria-label="Alternar modo oscuro"><svg width="32" height="32" class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+        <button class="btn-icon btn-hamburger" id="menuToggle" aria-label="Abrir menú" aria-controls="main-nav" aria-expanded="false"><span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <section class="page-hero" aria-label="Encabezado de contacto">
+      <div class="page-hero-content">
+        <p class="section-label">Estamos para ayudarte</p>
+        <h1 class="page-hero-title">Contacto</h1>
+        <p class="page-hero-subtitle">Completá el formulario y te respondemos en menos de 24 horas.</p>
+      </div>
+    </section>
+
+    <!--
+      ──────────────────────────────────────────────────────────
+      FORMULARIO AVANZADO
+      Técnicas CSS:
+      1. :valid / :invalid → estilos en tiempo real mientras el usuario escribe.
+         Funciona con los atributos required, type, minlength, pattern, etc.
+         del HTML. Sin JS.
+      2. :focus → highlight del campo activo.
+      3. :placeholder-shown → trick para floating labels.
+      4. Spinner CSS → animación de carga al enviar (keyframes rotateZ).
+      5. Modal → se activa con JS mínimo añadiendo clase .is-open.
+
+      Diseño: Flexbox + Grid para layout responsivo.
+      En pantallas grandes: 2 columnas (info | formulario).
+      En móvil: 1 columna apilada.
+      ──────────────────────────────────────────────────────────
+    -->
+    <section class="section contact-section" aria-labelledby="contact-title">
+      <div class="section-inner contact-layout">
+
+        <!-- Columna izquierda: información de contacto -->
+        <aside class="contact-info" aria-label="Información de contacto">
+          <h2 class="section-title" id="contact-title">Hablemos</h2>
+          <p class="contact-intro">
+            Ya sea que quieras organizar tu primer viaje o tu décimo, 
+            estamos acá para hacerlo perfecto.
+          </p>
+
+          <ul class="contact-details" role="list">
+            <li class="contact-detail-item">
+              <div class="contact-detail-icon" aria-hidden="true">📧</div>
+              <div>
+                <p class="contact-detail-label">Email</p>
+                <a href="mailto:info@wanderlust.com.ar" class="contact-detail-value">info@wanderlust.com.ar</a>
+              </div>
+            </li>
+            <li class="contact-detail-item">
+              <div class="contact-detail-icon" aria-hidden="true">📞</div>
+              <div>
+                <p class="contact-detail-label">Teléfono</p>
+                <a href="tel:+543884123456" class="contact-detail-value">+54 388 412-3456</a>
+              </div>
+            </li>
+            <li class="contact-detail-item">
+              <div class="contact-detail-icon" aria-hidden="true">📍</div>
+              <div>
+                <p class="contact-detail-label">Oficina</p>
+                <address class="contact-detail-value" style="font-style: normal;">
+                  Belgrano 743, piso 2<br />
+                  San Salvador de Jujuy, Argentina
+                </address>
+              </div>
+            </li>
+            <li class="contact-detail-item">
+              <div class="contact-detail-icon" aria-hidden="true">🕐</div>
+              <div>
+                <p class="contact-detail-label">Horario</p>
+                <p class="contact-detail-value">Lun–Vie: 9:00 a 18:00 hs</p>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Decoración visual -->
+          <div class="contact-decoration" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 200 200">
+              <circle cx="100" cy="100" r="80" fill="none" stroke="var(--color-accent)" stroke-width="1" stroke-dasharray="8 4" opacity="0.3"/>
+              <circle cx="100" cy="100" r="50" fill="none" stroke="var(--color-accent)" stroke-width="1" opacity="0.2"/>
+              <text x="100" y="110" text-anchor="middle" font-size="50" fill="var(--color-accent)" opacity="0.15">✈</text>
+            </svg>
+          </div>
+        </aside>
+
+        <!-- Columna derecha: formulario -->
+        <div class="contact-form-wrapper">
+          <!--
+            FORMULARIO:
+            - novalidate: usamos validación CSS y JS propio, no la del navegador.
+            - Los campos con 'required' reciben estilos :invalid cuando están vacíos
+              Y el usuario los tocó (simulamos con la clase .was-touched vía JS mínimo).
+            - Usamos la técnica de "floating labels" (labels que suben al escribir):
+              El label está posicionado absolute dentro del .form-field.
+              Cuando el input tiene :focus o :not(:placeholder-shown), el label sube.
+          -->
+          <form
+            class="contact-form"
+            id="contactForm"
+            action="#"
+            method="post"
+            novalidate
+            aria-label="Formulario de contacto"
+          >
+            <div class="form-grid">
+
+              <!-- Campo: Nombre -->
+              <div class="form-field">
+                <input
+                  type="text"
+                  id="contact-nombre"
+                  name="nombre"
+                  required
+                  minlength="2"
+                  maxlength="60"
+                  placeholder=" "
+                  autocomplete="given-name"
+                  aria-required="true"
+                  aria-describedby="nombre-error"
+                />
+                <label for="contact-nombre">Nombre *</label>
+                <!--
+                  Mensajes de error CSS: se muestran con
+                  input:invalid + .form-error { display: block }
+                  Solo cuando el campo tiene la clase .was-touched (JS).
+                -->
+                <span class="form-error" id="nombre-error" role="alert" aria-live="polite">
+                  Por favor ingresá tu nombre (mínimo 2 caracteres).
+                </span>
+                <span class="form-success" aria-hidden="true">✓</span>
+              </div>
+
+              <!-- Campo: Apellido -->
+              <div class="form-field">
+                <input
+                  type="text"
+                  id="contact-apellido"
+                  name="apellido"
+                  required
+                  minlength="2"
+                  maxlength="60"
+                  placeholder=" "
+                  autocomplete="family-name"
+                  aria-required="true"
+                  aria-describedby="apellido-error"
+                />
+                <label for="contact-apellido">Apellido *</label>
+                <span class="form-error" id="apellido-error" role="alert" aria-live="polite">Por favor ingresá tu apellido.</span>
+                <span class="form-success" aria-hidden="true">✓</span>
+              </div>
+
+              <!-- Campo: Email (ancho completo) -->
+              <div class="form-field form-field--full">
+                <input
+                  type="email"
+                  id="contact-email"
+                  name="email"
+                  required
+                  placeholder=" "
+                  autocomplete="email"
+                  aria-required="true"
+                  aria-describedby="email-error"
+                />
+                <label for="contact-email">Email *</label>
+                <span class="form-error" id="email-error" role="alert" aria-live="polite">Ingresá un email válido (ejemplo@dominio.com).</span>
+                <span class="form-success" aria-hidden="true">✓</span>
+              </div>
+
+              <!-- Campo: Teléfono -->
+              <div class="form-field">
+                <input
+                  type="tel"
+                  id="contact-telefono"
+                  name="telefono"
+                  placeholder=" "
+                  pattern="[\+]?[0-9\s\-\(\)]{7,20}"
+                  autocomplete="tel"
+                  aria-describedby="telefono-error"
+                />
+                <label for="contact-telefono">Teléfono</label>
+                <span class="form-error" id="telefono-error" role="alert" aria-live="polite">Formato inválido.</span>
+                <span class="form-success" aria-hidden="true">✓</span>
+              </div>
+
+              <!-- Campo: Destino de interés -->
+              <div class="form-field">
+                <select
+                  id="contact-destino"
+                  name="destino"
+                  aria-label="Destino de interés"
+                >
+                  <option value="" disabled selected>Seleccioná un destino</option>
+                  <option value="jujuy">Quebrada de Humahuaca</option>
+                  <option value="patagonia">Patagonia / Perito Moreno</option>
+                  <option value="iguazu">Cataratas del Iguazú</option>
+                  <option value="mendoza">Mendoza / Ruta del Vino</option>
+                  <option value="bariloche">Bariloche</option>
+                  <option value="salta">Salta</option>
+                  <option value="otro">Otro destino</option>
+                </select>
+                <label for="contact-destino" class="label-select">Destino de interés</label>
+              </div>
+
+              <!-- Campo: Cantidad de personas -->
+              <div class="form-field">
+                <input
+                  type="number"
+                  id="contact-personas"
+                  name="personas"
+                  min="1"
+                  max="50"
+                  placeholder=" "
+                  aria-describedby="personas-error"
+                />
+                <label for="contact-personas">Cantidad de personas</label>
+                <span class="form-error" id="personas-error" role="alert" aria-live="polite">Ingresá entre 1 y 50 personas.</span>
+                <span class="form-success" aria-hidden="true">✓</span>
+              </div>
+
+              <!-- Campo: Fechas -->
+              <div class="form-field">
+                <input
+                  type="date"
+                  id="contact-fecha-desde"
+                  name="fecha_desde"
+                  aria-label="Fecha de inicio del viaje"
+                />
+                <label for="contact-fecha-desde" class="label-date">Fecha de salida</label>
+              </div>
+
+              <div class="form-field">
+                <input
+                  type="date"
+                  id="contact-fecha-hasta"
+                  name="fecha_hasta"
+                  aria-label="Fecha de regreso"
+                />
+                <label for="contact-fecha-hasta" class="label-date">Fecha de regreso</label>
+              </div>
+
+              <!-- Campo: Mensaje -->
+              <div class="form-field form-field--full">
+                <textarea
+                  id="contact-mensaje"
+                  name="mensaje"
+                  required
+                  minlength="20"
+                  maxlength="500"
+                  rows="5"
+                  placeholder=" "
+                  aria-required="true"
+                  aria-describedby="mensaje-error"
+                ></textarea>
+                <label for="contact-mensaje">Mensaje *</label>
+                <span class="form-error" id="mensaje-error" role="alert" aria-live="polite">El mensaje debe tener al menos 20 caracteres.</span>
+                <span class="form-success" aria-hidden="true">✓</span>
+                <!-- Contador de caracteres -->
+                <span class="char-counter" id="mensaje-counter" aria-live="polite">0 / 500</span>
+              </div>
+
+              <!-- Checkbox de privacidad -->
+              <div class="form-field form-field--full form-field--checkbox">
+                <input
+                  type="checkbox"
+                  id="contact-privacidad"
+                  name="privacidad"
+                  required
+                  aria-required="true"
+                  aria-describedby="privacidad-error"
+                />
+                <label for="contact-privacidad" class="label-checkbox">
+                  Acepto la <a href="#">política de privacidad</a> y el tratamiento de mis datos para recibir información turística. *
+                </label>
+                <span class="form-error" id="privacidad-error" role="alert" aria-live="polite">Debés aceptar la política de privacidad.</span>
+              </div>
+
+            </div><!-- /.form-grid -->
+
+            <!-- Botón de envío -->
+            <div class="form-submit-wrapper">
+              <!--
+                SPINNER DE CARGA CSS:
+                El .spinner es un círculo con border-top de color distinto
+                y una animación rotateZ de 360deg en keyframes.
+                Se muestra/oculta con JS al hacer submit.
+              -->
+              <button type="submit" class="btn btn--primary btn--lg btn--submit" id="submitBtn">
+                <span class="btn-text">Enviar consulta</span>
+                <span class="spinner" aria-hidden="true"></span>
+              </button>
+              <p class="form-disclaimer">* Campos obligatorios. Respondemos en menos de 24 hs hábiles.</p>
+            </div>
+
+          </form>
+        </div><!-- /.contact-form-wrapper -->
+
+      </div><!-- /.contact-layout -->
+    </section>
+
+  </main>
+
+  <!--
+    MODAL DE CONFIRMACIÓN
+    Técnica: .modal está hidden por defecto (opacity:0, visibility:hidden, scale).
+    JS agrega .is-open al enviarse el formulario, lo que activa la transición CSS.
+    El botón de cerrar y el overlay también cierran el modal.
+    aria-modal="true" informa a tecnologías asistivas que el resto está bloqueado.
+  -->
+  <div
+    class="modal-overlay"
+    id="confirmModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-title"
+    aria-describedby="modal-desc"
+    tabindex="-1"
+  >
+    <div class="modal">
+      <!-- Botón cerrar -->
+      <button class="modal-close" id="modalClose" aria-label="Cerrar confirmación">
+        <svg width="32" height="32" viewBox="0 0 24 24" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2"/>
+          <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </button>
+
+      <div class="modal-icon" aria-hidden="true">✈️</div>
+
+      <h2 class="modal-title" id="modal-title">¡Consulta enviada!</h2>
+      <p class="modal-desc" id="modal-desc">
+        Gracias por contactarnos. Revisamos tu mensaje y te respondemos 
+        en menos de 24 horas hábiles con toda la información que necesitás.
+      </p>
+
+      <div class="modal-actions">
+        <button class="btn btn--primary" id="modalCloseBtn">Perfecto, ¡gracias!</button>
+        <a href="destinos.html" class="btn btn--outline">Ver más destinos</a>
+      </div>
+    </div>
+  </div>
+  <!-- overlay del modal (click cierra) -->
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true"></div>
+
+  <footer class="site-footer" aria-label="Pie de página">
+    <div class="footer-inner">
+      <div class="footer-col footer-col--brand"><a href="index.html" class="logo logo--footer"><svg width="32" height="32" class="logo-svg" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 4 C10 14, 10 26, 20 36 C30 26, 30 14, 20 4Z" fill="currentColor" opacity="0.3"/><line x1="4" y1="20" x2="36" y2="20" stroke="currentColor" stroke-width="2"/></svg><span class="logo-text">Wanderlust</span></a><p class="footer-tagline">Conectamos viajeros con experiencias únicas.</p></div>
+      <nav class="footer-col footer-col--links" aria-label="Links"><h3 class="footer-heading">Páginas</h3><ul role="list"><li><a href="destinos.html">Destinos</a></li><li><a href="agencias.html">Agencias</a></li><li><a href="precios.html">Precios</a></li><li><a href="blog.html">Blog</a></li></ul></nav>
+    </div>
+    <div class="footer-bottom"><div class="footer-bottom-inner"><p class="copyright">© <span id="current-year">2025</span> Wanderlust Turismo.</p></div></div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
