@@ -1,0 +1,98 @@
+------- DOCUMENTACION HMTL --------
+
+Google Fonts: usamos dos tipografías distintivas.
+- "DM Sans": moderna, humanista, para texto corrido.
+Se cargan con preconnect para mejorar la velocidad.
+
+.header-inner: contenedor con max-width para centrar el contenido.
+Evitamos que el header se extienda demasiado en pantallas anchas.
+
+SVG inline: el logo como gráfico vectorial. Al estar inline (no como <img>) podemos animarlo con CSS.
+
+MEGA-MENÚ: navegación principal. Usamos <nav> + <ul> que es la estructura semántica correcta para listas de navegación (accesible para lectores de pantalla).
+El mega-menú se despliega solo con CSS usando :hover y :focus-within, sin JavaScript. Esto se explica en el CSS.
+
+ÍTEM CON MEGA-MENÚ: Destinos
+- .has-megamenu marca que este ítem despliega un panel grande.
+- aria-haspopup="true" informa a tecnologías asistivas.
+- aria-expanded se actualizará con JS mínimo para accesibilidad.
+
+PANEL DEL MEGA-MENÚ:
+Se oculta con opacity:0 y visibility:hidden en CSS, y se muestra al hacer hover/focus en el <li> padre. Usamos <div role="region"> para semántica.
+
+Botón de modo oscuro (Dark Mode). JS mínimo: solo alterna el atributo data-theme en <body>. Todo el cambio visual lo hace CSS con variables.
+
+Botón hamburguesa para menú móvil. aria-controls indica qué elemento controla.
+JS mínimo: togglea clase .is-open en el nav.
+
+──────────────────────────────────────────────────────────
+SECCIÓN 1: HERO
+Video de fondo + overlay + texto animado.
+Técnicas CSS: clip-path, keyframes, Custom Properties.
+
+.hero-tag: etiqueta pequeña que aparece primero (animación stagger).
+Stagger = cada elemento hijo aparece con un retraso distinto,
+creando un efecto de cascada. Se logra con animation-delay en CSS.
+
+──────────────────────────────────────────────────────────
+SECCIÓN 2: DESTINOS DESTACADOS
+Cards con hover effects y transiciones CSS.
+Técnicas CSS: transform, transition, overflow, object-fit.
+
+Grid de tarjetas (cards).
+CSS Grid con auto-fill y minmax para que las columnas se adapten solas sin media queries explícitas.
+Esto se define en el CSS como: grid-template-columns: repeat(auto-fill, minmax(300px, 1fr))
+
+CARD DE DESTINO:
+Estructura:
+- .card-image-wrapper: contiene la imagen + etiqueta de categoría.
+- img con loading="lazy": el navegador carga la imagen solo cuando está cerca del viewport (viewport = área visible de la pantalla).
+- .card-body: información textual.
+- .card-footer: precio y botón.
+El efecto hover (zoom de imagen + overlay) se hace 100% en CSS: .destination-card:hover .card-image img { transform: scale(1.08); }
+
+──────────────────────────────────────────────────────────
+SECCIÓN 3: CONTADOR ANIMADO
+Números que cuentan solos cuando entran al viewport. Técnica: CSS @keyframes + JS mínimo con IntersectionObserver para activar la animación cuando el elemento es visible.
+
+Cada .stat-item tiene:
+- data-target: el número final al que llega el contador.
+- data-suffix: el símbolo que va después (%, +, etc.)
+JS leerá estos atributos para animar el número.
+
+──────────────────────────────────────────────────────────
+SECCIÓN 4: TESTIMONIOS (CARRUSEL SOLO CSS)
+Técnica: radio inputs ocultos + labels como controles.
+Sin JavaScript. El truco es usar input[type="radio"]:checked para mostrar/ocultar las diapositivas mediante el combinador ~.
+ 
+CARRUSEL CSS-ONLY:
+Los <input type="radio"> son invisibles pero controlables.
+Los <label> son los "dots" (puntos de navegación).
+El CSS hace: input#s1:checked ~ .carousel .slide-1 { display: block }
+
+──────────────────────────────────────────────────────────
+SECCIÓN 5: CÓMO FUNCIONA (Scroll Snap target)
+
+============================================================
+FOOTER: pie de página.
+Contiene: newsletter, redes sociales y mapa embebido.
+
+FORMULARIO NEWSLETTER:
+- action="#": en un sitio real apuntaría a un endpoint del servidor.
+- novalidate: desactivamos la validación nativa del navegador para hacer la nuestra con CSS (:valid/:invalid) en la página de contacto.
+- El input type="email" activa el teclado correcto en móviles.
+
+MAPA EMBEBIDO:
+OpenStreetMap via iframe. No requiere API Key.
+- loading="lazy": el iframe se carga solo cuando es visible.
+- title: accesibilidad (lectores de pantalla anuncian el contenido del iframe).
+Coordenadas: San Salvador de Jujuy como ejemplo.
+
+============================================================
+JAVASCRIPT MÍNIMO:
+Solo para funcionalidades que CSS no puede hacer solo:
+1. Toggle modo oscuro (dark mode)
+2. Toggle menú móvil
+3. Contador animado (IntersectionObserver)
+4. Año dinámico en copyright
+5. aria-expanded en mega-menú para accesibilidad

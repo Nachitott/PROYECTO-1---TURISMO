@@ -2,70 +2,31 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <!--
-    viewport: le dice al navegador que adapte el ancho al dispositivo.
-    Sin esto, el sitio se vería como escritorio en celulares.
-  -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Explora los mejores destinos turísticos del mundo con Wanderlust. Paquetes, agencias y experiencias únicas." />
   <title>Wanderlust – Turismo de Experiencias</title>
-
-  <!--
-    Google Fonts: usamos dos tipografías distintivas.
-    - "Playfair Display": elegante, serif, para títulos y énfasis.
-    - "DM Sans": moderna, humanista, para texto corrido.
-    Se cargan con preconnect para mejorar la velocidad.
-  -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
-  <!--
-    Archivo CSS externo: toda la presentación visual va aquí,
-    manteniendo el HTML limpio (solo estructura y contenido).
-  -->
   <link rel="stylesheet" href="css/index.css" />
 </head>
 
 <body class="page-home" data-theme="light">
-  <!--
-    ============================================================
-    HEADER: encabezado del sitio, visible en todas las páginas.
-    Usamos <header> (etiqueta semántica) en lugar de <div>.
-    La semántica ayuda a los lectores de pantalla y al SEO.
-    ============================================================
-  -->
+ 
   <header class="site-header" id="site-header">
-    <!--
-      .header-inner: contenedor con max-width para centrar el contenido.
-      Evitamos que el header se extienda demasiado en pantallas anchas.
-    -->
+   
     <div class="header-inner">
 
-      <!-- Logo del sitio -->
       <a href="index.html" class="logo" aria-label="Wanderlust – Inicio">
-        <!--
-          SVG inline: el logo como gráfico vectorial.
-          Al estar inline (no como <img>) podemos animarlo con CSS.
-        -->
-
-        <!-- LOGO OCULTADO PARA MEJORAR VISIBILIDAD DEL HTML (descomentar cuando apliquemos css)-->
-        <!-- <svg class="logo-svg" viewBox="0 0 40 40" aria-hidden="true">
+        <svg class="logo-svg" viewBox="0 0 40 40" aria-hidden="true">
           <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/>
           <path d="M20 4 C10 14, 10 26, 20 36 C30 26, 30 14, 20 4Z" fill="currentColor" opacity="0.3"/>
           <line x1="4" y1="20" x2="36" y2="20" stroke="currentColor" stroke-width="2"/>
-        </svg> -->
+        </svg>
         <span class="logo-text">Wanderlust</span>
       </a>
 
-      <!--
-        MEGA-MENÚ: navegación principal.
-        Usamos <nav> + <ul> que es la estructura semántica correcta
-        para listas de navegación (accesible para lectores de pantalla).
 
-        El mega-menú se despliega solo con CSS usando :hover y :focus-within,
-        sin JavaScript. Esto se explica en el CSS.
-      -->
       <nav class="main-nav" aria-label="Navegación principal">
         <ul class="nav-list" role="list">
 
@@ -73,26 +34,15 @@
             <a href="index.html" class="nav-link nav-link--active" aria-current="page">Inicio</a>
           </li>
 
-          <!--
-            ÍTEM CON MEGA-MENÚ: Destinos
-            - .has-megamenu marca que este ítem despliega un panel grande.
-            - aria-haspopup="true" informa a tecnologías asistivas.
-            - aria-expanded se actualizará con JS mínimo para accesibilidad.
-          -->
+
           <li class="nav-item has-megamenu">
             <a href="destinos.html" class="nav-link" aria-haspopup="true" aria-expanded="false">
               Destinos
-              <!-- Ícono de flecha indicando que hay submenú -->
               <svg class="chevron" viewBox="0 0 10 6" width="32" height="32" aria-hidden="true">
                 <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/>
               </svg>
             </a>
-            <!--
-              PANEL DEL MEGA-MENÚ:
-              Se oculta con opacity:0 y visibility:hidden en CSS,
-              y se muestra al hacer hover/focus en el <li> padre.
-              Usamos <div role="region"> para semántica.
-            -->
+
             <div class="megamenu" role="region" aria-label="Categorías de destinos">
               <div class="megamenu-inner">
 
@@ -120,17 +70,9 @@
 
                 <div class="megamenu-col megamenu-col--featured">
                   <h3 class="megamenu-heading">Destino del Mes</h3>
-                  <!--
-                    Imagen destacada dentro del mega-menú.
-                    aspect-ratio en CSS mantiene la proporción sin JS.
-                  -->
                   <div class="megamenu-featured-card">
                     <img
-                      src="images\quebrada.jpg"
-                      alt="Quebrada de Humahuaca, Jujuy"
-                      loading="lazy"
-                      width="240"
-                      height="140"
+                      src="assets/images/quebrada.jpg" alt="Quebrada de Humahuaca, Jujuy" loading="lazy" width="240" height="140"
                     />
                     <p class="megamenu-featured-title">Quebrada de Humahuaca</p>
                     <a href="destinos.html" class="btn btn--sm">Ver paquetes</a>
@@ -203,18 +145,9 @@
         </ul>
       </nav>
 
-      <!-- Controles del header: modo oscuro + menú móvil -->
       <div class="header-controls">
-        <!--
-          Botón de modo oscuro (Dark Mode).
-          JS mínimo: solo alterna el atributo data-theme en <body>.
-          Todo el cambio visual lo hace CSS con variables.
-        -->
         <button
-          class="btn-icon btn-darkmode"
-          id="darkModeToggle"
-          aria-label="Alternar modo oscuro"
-          title="Modo oscuro"
+          class="btn-icon btn-darkmode" id="darkModeToggle" aria-label="Alternar modo oscuro" title="Modo oscuro"
         >
           <!-- Ícono sol (modo claro activo) -->
           <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
@@ -230,11 +163,6 @@
           </svg>
         </button>
 
-        <!--
-          Botón hamburguesa para menú móvil.
-          aria-controls indica qué elemento controla.
-          JS mínimo: togglea clase .is-open en el nav.
-        -->
         <button
           class="btn-icon btn-hamburger"
           id="menuToggle"
@@ -248,62 +176,25 @@
         </button>
       </div>
 
-    </div><!-- /.header-inner -->
+    </div>
   </header>
 
-  <!--
-    ============================================================
-    MAIN: contenido principal de la página.
-    <main> es semántico: hay un solo <main> por página.
-    ============================================================
-  -->
   <main id="main-content">
 
-    <!--
-      ──────────────────────────────────────────────────────────
-      SECCIÓN 1: HERO
-      Video de fondo + overlay + texto animado.
-      Técnicas CSS: clip-path, keyframes, Custom Properties.
-      ──────────────────────────────────────────────────────────
-    -->
     <section class="hero" aria-label="Sección principal">
 
-      <!--
-        VIDEO DE FONDO:
-        - autoplay: empieza automáticamente.
-        - muted: necesario para autoplay sin interacción del usuario.
-        - loop: se repite.
-        - playsinline: evita pantalla completa en iOS.
-        - preload="metadata": carga solo los metadatos al inicio.
-        - <source> con type: el navegador elige el formato soportado.
-        - El <p> dentro es el fallback si el navegador no soporta video.
-        aria-hidden: el video es decorativo, los lectores de pantalla lo ignoran.
-      -->
       <div class="hero-video-wrapper" aria-hidden="true">
         <video
-          class="hero-video"
-          autoplay
-          muted
-          loop
-          playsinline
-          preload="metadata"
+          class="hero-video" autoplay muted loop playsinline preload="metadata"
         >
-          <source src="video/hero-destino.mp4" type="video/mp4" />
+          <source src="assets/video/HERO_VIDEO.mp4" type="video/mp4" />
           <source src="video/hero-destino.webm" type="video/webm" />
-          <!-- Fallback: imagen si el video no carga -->
           <img src="img/hero-fallback.jpg" alt="" />
         </video>
-        <!-- Overlay oscuro sobre el video para que el texto sea legible -->
         <div class="hero-overlay"></div>
       </div>
 
-      <!-- Contenido del hero: texto animado -->
       <div class="hero-content">
-        <!--
-          .hero-tag: etiqueta pequeña que aparece primero (animación stagger).
-          Stagger = cada elemento hijo aparece con un retraso distinto,
-          creando un efecto de cascada. Se logra con animation-delay en CSS.
-        -->
         <p class="hero-tag animate-in" style="--delay: 0s">✈️ Descubre el mundo</p>
 
         <h1 class="hero-title animate-in" style="--delay: 0.15s">
@@ -321,10 +212,6 @@
         </div>
       </div>
 
-      <!--
-        Indicador de scroll: flecha animada que invita a bajar.
-        animation: bounceDown en keyframes del CSS.
-      -->
       <a href="#destinos-destacados" class="scroll-indicator" aria-label="Ir al contenido">
         <svg viewBox="0 0 24 24" width="32" height="32" aria-hidden="true">
           <path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" fill="none"/>
@@ -332,15 +219,8 @@
       </a>
 
     </section>
-    <!--/ .hero -->
 
-    <!--
-      ──────────────────────────────────────────────────────────
-      SECCIÓN 2: DESTINOS DESTACADOS
-      Cards con hover effects y transiciones CSS.
-      Técnicas CSS: transform, transition, overflow, object-fit.
-      ──────────────────────────────────────────────────────────
-    -->
+
     <section class="section destinations-featured" id="destinos-destacados" aria-labelledby="dest-title">
 
       <div class="section-inner">
@@ -350,31 +230,12 @@
           <p class="section-subtitle">Los lugares que más eligen nuestros viajeros este año.</p>
         </header>
 
-        <!--
-          Grid de tarjetas (cards).
-          CSS Grid con auto-fill y minmax para que las columnas
-          se adapten solas sin media queries explícitas.
-          Esto se define en el CSS como:
-          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr))
-        -->
         <div class="cards-grid" role="list">
 
-          <!--
-            CARD DE DESTINO:
-            Estructura:
-            - .card-image-wrapper: contiene la imagen + etiqueta de categoría.
-            - img con loading="lazy": el navegador carga la imagen solo cuando
-              está cerca del viewport (viewport = área visible de la pantalla).
-            - .card-body: información textual.
-            - .card-footer: precio y botón.
-
-            El efecto hover (zoom de imagen + overlay) se hace 100% en CSS:
-            .destination-card:hover .card-image img { transform: scale(1.08); }
-          -->
           <article class="destination-card" role="listitem">
             <div class="card-image-wrapper">
               <img
-                src="images\quebrada.jpg"
+                src="assets/images/quebrada.jpg"
                 alt="Quebrada de Humahuaca, Jujuy – paisaje de montañas coloridas"
                 loading="lazy"
                 width="400"
@@ -407,7 +268,7 @@
           <article class="destination-card" role="listitem">
             <div class="card-image-wrapper">
               <img
-                src="images\perito.png"
+                src="assets/images/perito.png"
                 alt="Torres del Paine, Patagonia – lago y montañas nevadas"
                 loading="lazy"
                 width="400"
@@ -439,7 +300,7 @@
           <article class="destination-card" role="listitem">
             <div class="card-image-wrapper">
               <img
-                src="images\cataratas.jpg"
+                src="assets/images/cataratas.jpg"
                 alt="Cataratas del Iguazú desde el pasarela inferior"
                 loading="lazy"
                 width="400"
@@ -471,7 +332,7 @@
           <article class="destination-card" role="listitem">
             <div class="card-image-wrapper">
               <img
-                src="images\rutavino.png"
+                src="assets/images/rutavino.png"
                 alt="Viñedos de Mendoza con los Andes de fondo"
                 loading="lazy"
                 width="400"
@@ -503,7 +364,7 @@
           <article class="destination-card" role="listitem">
             <div class="card-image-wrapper">
               <img
-                src="images\bariloche.jpg"
+                src="assets/images/bariloche.jpg"
                 alt="Lago Nahuel Huapi y montañas nevadas en Bariloche"
                 loading="lazy"
                 width="400"
@@ -535,7 +396,7 @@
           <article class="destination-card" role="listitem">
             <div class="card-image-wrapper">
               <img
-                src="images\salta.png"
+                src="assets/images/salta.png"
                 alt="Centro histórico de Salta con arquitectura colonial"
                 loading="lazy"
                 width="400"
@@ -572,28 +433,14 @@
       </div>
 
     </section>
-    <!--/ .destinations-featured -->
 
-    <!--
-      ──────────────────────────────────────────────────────────
-      SECCIÓN 3: CONTADOR ANIMADO
-      Números que cuentan solos cuando entran al viewport.
-      Técnica: CSS @keyframes + JS mínimo con IntersectionObserver
-      para activar la animación cuando el elemento es visible.
-      ──────────────────────────────────────────────────────────
-    -->
     <section class="section stats-section" aria-labelledby="stats-title">
       <div class="section-inner">
         <h2 class="sr-only" id="stats-title">Nuestros números</h2>
 
         <div class="stats-grid">
 
-          <!--
-            Cada .stat-item tiene:
-            - data-target: el número final al que llega el contador.
-            - data-suffix: el símbolo que va después (%, +, etc.)
-            JS leerá estos atributos para animar el número.
-          -->
+
           <div class="stat-item">
             <p class="stat-number" data-target="500" data-suffix="+">0</p>
             <p class="stat-label">Destinos disponibles</p>
@@ -610,7 +457,7 @@
           </div>
 
           <div class="stat-item">
-            <p class="stat-number" data-target="98" data-suffix="%">0</p>
+            <p class="stat-number" data-target="100" data-suffix="%">0</p>
             <p class="stat-label">Satisfacción garantizada</p>
           </div>
 
@@ -619,14 +466,6 @@
     </section>
     <!--/ .stats-section -->
 
-    <!--
-      ──────────────────────────────────────────────────────────
-      SECCIÓN 4: TESTIMONIOS (CARRUSEL SOLO CSS)
-      Técnica: radio inputs ocultos + labels como controles.
-      Sin JavaScript. El truco es usar input[type="radio"]:checked
-      para mostrar/ocultar las diapositivas mediante el combinador ~.
-      ──────────────────────────────────────────────────────────
-    -->
     <section class="section testimonials-section" aria-labelledby="testimonios-title">
       <div class="section-inner">
         <header class="section-header">
@@ -634,15 +473,9 @@
           <h2 class="section-title" id="testimonios-title">Testimonios de Viajeros</h2>
         </header>
 
-        <!--
-          CARRUSEL CSS-ONLY:
-          Los <input type="radio"> son invisibles pero controlables.
-          Los <label> son los "dots" (puntos de navegación).
-          El CSS hace: input#s1:checked ~ .carousel .slide-1 { display: block }
-        -->
+
         <div class="carousel" role="region" aria-label="Carrusel de testimonios">
 
-          <!-- Radio inputs: uno por diapositiva -->
           <input type="radio" name="testimonial" id="t1" class="carousel-input" checked aria-label="Testimonio 1" />
           <input type="radio" name="testimonial" id="t2" class="carousel-input" aria-label="Testimonio 2" />
           <input type="radio" name="testimonial" id="t3" class="carousel-input" aria-label="Testimonio 3" />
@@ -716,11 +549,6 @@
     </section>
     <!--/ .testimonials-section -->
 
-    <!--
-      ──────────────────────────────────────────────────────────
-      SECCIÓN 5: CÓMO FUNCIONA (Scroll Snap target)
-      ──────────────────────────────────────────────────────────
-    -->
     <section class="section how-it-works" id="como-funciona" aria-labelledby="how-title">
       <div class="section-inner">
         <header class="section-header">
@@ -760,12 +588,6 @@
   </main>
   <!--/ #main-content -->
 
-  <!--
-    ============================================================
-    FOOTER: pie de página.
-    Contiene: newsletter, redes sociales y mapa embebido.
-    ============================================================
-  -->
   <footer class="site-footer" aria-label="Pie de página">
     <div class="footer-inner">
 
@@ -838,13 +660,6 @@
         <h3 class="footer-heading">Suscribite al newsletter</h3>
         <p class="footer-newsletter-desc">Ofertas exclusivas, nuevos destinos y consejos de viaje directo a tu bandeja.</p>
 
-        <!--
-          FORMULARIO NEWSLETTER:
-          - action="#": en un sitio real apuntaría a un endpoint del servidor.
-          - novalidate: desactivamos la validación nativa del navegador
-            para hacer la nuestra con CSS (:valid/:invalid) en la página de contacto.
-          - El input type="email" activa el teclado correcto en móviles.
-        -->
         <form class="newsletter-form" action="#" method="post" novalidate aria-label="Formulario de suscripción">
           <div class="newsletter-input-wrapper">
             <label for="newsletter-email" class="sr-only">Tu email</label>
@@ -869,13 +684,7 @@
 
     </div><!-- /.footer-inner -->
 
-    <!--
-      MAPA EMBEBIDO:
-      OpenStreetMap via iframe. No requiere API Key.
-      - loading="lazy": el iframe se carga solo cuando es visible.
-      - title: accesibilidad (lectores de pantalla anuncian el contenido del iframe).
-      Coordenadas: San Salvador de Jujuy como ejemplo.
-    -->
+
     <div class="footer-map" aria-label="Mapa de nuestra ubicación">
       <iframe
         title="Mapa de ubicación de Wanderlust Turismo"
@@ -903,23 +712,7 @@
   </footer>
   <!--/ .site-footer -->
 
-  <!--
-    ============================================================
-    JAVASCRIPT MÍNIMO:
-    Solo para funcionalidades que CSS no puede hacer solo:
-    1. Toggle modo oscuro (dark mode)
-    2. Toggle menú móvil
-    3. Contador animado (IntersectionObserver)
-    4. Año dinámico en copyright
-    5. aria-expanded en mega-menú para accesibilidad
-    ============================================================
-  -->
   <script src="js/index.js" defer></script>
-  <!--
-    defer: el script se descarga en paralelo con el HTML
-    pero se ejecuta DESPUÉS de que el DOM esté listo.
-    Así no bloquea la renderización de la página.
-  -->
 
 </body>
 </html>

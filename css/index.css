@@ -793,16 +793,6 @@ em {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-
-  /*
-    clip-path: polygon() crea una forma personalizada.
-    Aquí creamos un corte diagonal en el borde inferior:
-    - esquina sup-izq (0,0)
-    - esquina sup-der (100%, 0)
-    - esquina inf-der (100%, 90%)
-    - punto diagonal izquierdo (0, 100%)
-    Resultado: borde inferior con pendiente, no horizontal.
-  */
   clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
   margin-bottom: -4rem; /* Compensa el clip para solapar la sección siguiente */
 }
@@ -822,11 +812,6 @@ em {
   object-position: center 30%;
 }
 
-/*
-  OVERLAY: capa semitransparente sobre el video.
-  Usamos un gradiente en lugar de un color sólido para que sea
-  más natural: oscuro abajo (donde está el texto) y semi oscuro arriba.
-*/
 .hero-overlay {
   position: absolute;
   inset: 0;
@@ -1944,6 +1929,3 @@ html {
     scroll-snap-type: none;
   }
 }
-/* ============================================================
-   FIN DEL ARCHIVO CSS
-   ============================================================ */
