@@ -206,7 +206,7 @@
 /* Gradiente para la media estrella */
 .star--half {
   background: linear-gradient(90deg, #FFB800 50%, var(--color-border-strong) 50%);
-  -webkit-background-clip: text;
+  -webkit-background-clip: text; 
   -webkit-text-fill-color: transparent;
 }
 
