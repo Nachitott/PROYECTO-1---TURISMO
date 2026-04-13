@@ -1,0 +1,218 @@
+/* ============================================================
+   WANDERLUST TURISMO — blog.css
+   Estilo periódico (Newspaper), Filtros CSS y Scroll Reveal.
+   ============================================================ */
+
+/* ── CABECERA DE PERIÓDICO ── */
+.blog-masthead {
+  text-align: center;
+  padding: var(--space-12) var(--space-6);
+  background: var(--color-bg);
+  border-bottom: 2px solid var(--color-text-primary);
+  margin-bottom: var(--space-12);
+}
+
+.blog-edition {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-2);
+}
+
+.blog-masthead-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  color: var(--color-text-primary);
+  letter-spacing: -2px;
+  margin-bottom: var(--space-2);
+}
+
+.blog-masthead-rule {
+  height: 6px;
+  border-top: 1px solid var(--color-text-primary);
+  border-bottom: 2px solid var(--color-text-primary);
+  width: 100%;
+  max-width: 800px;
+  margin: var(--space-6) auto 0;
+}
+
+/* ── FILTROS CSS-ONLY PARA BLOG ── */
+.blog-filter {
+  display: none; /* Oculta los radios */
+}
+
+.blog-tags-bar {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-16);
+  flex-wrap: wrap;
+}
+
+.blog-tag {
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  background: var(--color-surface);
+}
+
+/* Lógica de color para el tag activo */
+#blog-all:checked ~ .section-inner .blog-tags-bar label[for="blog-all"],
+#blog-guias:checked ~ .section-inner .blog-tags-bar label[for="blog-guias"],
+#blog-consejos:checked ~ .section-inner .blog-tags-bar label[for="blog-consejos"],
+#blog-gastronomia:checked ~ .section-inner .blog-tags-bar label[for="blog-gastronomia"],
+#blog-naturaleza:checked ~ .section-inner .blog-tags-bar label[for="blog-naturaleza"],
+#blog-cultura:checked ~ .section-inner .blog-tags-bar label[for="blog-cultura"] {
+  background: var(--color-text-primary);
+  color: var(--color-bg);
+  border-color: var(--color-text-primary);
+}
+
+/* Lógica de filtrado de artículos */
+.blog-filter:checked ~ .section-inner .newspaper-grid .article-card {
+  display: none;
+}
+
+#blog-all:checked ~ .section-inner .newspaper-grid .article-card,
+#blog-guias:checked ~ .section-inner .newspaper-grid .blog-cat-guias,
+#blog-consejos:checked ~ .section-inner .newspaper-grid .blog-cat-consejos,
+#blog-gastronomia:checked ~ .section-inner .newspaper-grid .blog-cat-gastronomia,
+#blog-naturaleza:checked ~ .section-inner .newspaper-grid .blog-cat-naturaleza,
+#blog-cultura:checked ~ .section-inner .newspaper-grid .blog-cat-cultura {
+  display: flex; /* Muestra los que coinciden */
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* ── LAYOUT NEWSPAPER (CSS GRID) ── */
+.newspaper-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr); /* 12 columnas para máxima flexibilidad */
+  gap: var(--space-8);
+}
+
+.article-card {
+  grid-column: span 4; /* Por defecto ocupan 1/3 del ancho */
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+/* Artículo Destacado (Featured) */
+.article-card--featured {
+  grid-column: span 8; /* Ocupa 2/3 del ancho */
+  grid-row: span 2;   /* Ocupa dos filas de alto */
+}
+
+@media (max-width: 900px) {
+  .article-card { grid-column: span 6; }
+  .article-card--featured { grid-column: span 12; }
+}
+@media (max-width: 600px) {
+  .article-card { grid-column: span 12; }
+}
+
+.article-image-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.article-card--featured .article-image-wrapper {
+  height: 400px;
+}
+
+.article-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.article-body {
+  padding: var(--space-6);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.article-title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  margin: var(--space-2) 0 var(--space-4);
+  line-height: var(--leading-tight);
+}
+
+.article-card--featured .article-title {
+  font-size: var(--text-4xl);
+}
+
+/* ── AVATARES CSS-ONLY ── */
+.article-author {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: auto;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background-color: var(--color-accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: bold;
+  font-size: var(--text-xs);
+}
+
+/* El truco de las iniciales usando el atributo del HTML */
+.avatar::after {
+  content: attr(data-initials);
+}
+
+/* ── SCROLL REVEAL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── SECCIÓN DE COMENTARIOS ── */
+.comments-section {
+  margin-top: var(--space-24);
+  border-top: 1px solid var(--color-border-strong);
+  padding-top: var(--space-12);
+}
+
+.comment {
+  display: flex;
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+.comments-list--nested {
+  margin-left: var(--space-12);
+  border-left: 2px solid var(--color-border);
+  padding-left: var(--space-6);
+}
+
+.author-badge {
+  background: var(--color-accent);
+  color: #fff;
+  font-size: 0.6rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  margin-left: var(--space-2);
+}

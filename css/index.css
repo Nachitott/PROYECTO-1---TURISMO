@@ -1922,5 +1922,28 @@ em {
 }
 
 /* ============================================================
+   15. SCROLL SNAP (Requisito del TP)
+   ============================================================ */
+/* Convertimos el HTML en un contenedor de scroll magnético vertical */
+html {
+  scroll-snap-type: y proximity;
+}
+
+/* Le decimos a las secciones principales que sean los "imanes" */
+.hero, 
+.section, 
+.site-footer {
+  scroll-snap-align: start;
+  /* scroll-margin-top evita que el header fijo tape el título al hacer el snap */
+  scroll-margin-top: var(--header-height); 
+}
+
+/* Desactivamos el snap en pantallas muy chicas si las secciones son más altas que la pantalla */
+@media (max-height: 800px) {
+  html {
+    scroll-snap-type: none;
+  }
+}
+/* ============================================================
    FIN DEL ARCHIVO CSS
    ============================================================ */
