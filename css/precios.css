@@ -1,0 +1,176 @@
+/* ============================================================
+   WANDERLUST TURISMO — precios.css
+   Estilos para el Comparador de Precios y Tooltips.
+   ============================================================ */
+
+/* ── Encabezado de Página ── */
+.page-hero {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-inverse);
+  padding: var(--space-24) var(--space-6);
+  text-align: center;
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+  margin-bottom: var(--space-12);
+}
+
+/* ── TABLA COMPARATIVA AVANZADA ── */
+.prices-comparison-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  margin-bottom: var(--space-6);
+}
+
+.prices-comparison-table th {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-inverse);
+  padding: var(--space-5);
+  text-align: left;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.prices-comparison-table td {
+  padding: var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: middle;
+}
+
+/* Efecto de resaltado al pasar el cursor (Requisito 5 del PDF) */
+.prices-comparison-table tbody tr {
+  transition: all var(--transition-base);
+}
+
+.prices-comparison-table tbody tr:hover {
+  background-color: var(--color-accent-light); /* Resaltado con el color de acento claro */
+  transform: scale(1.005); /* Pequeño efecto de elevación */
+  box-shadow: var(--shadow-md);
+  position: relative;
+  z-index: 10;
+}
+
+/* Estilo para la fila destacada (Más popular) */
+.row-featured td {
+  background-color: rgba(184, 134, 11, 0.03);
+}
+
+.row-badge {
+  display: inline-block;
+  background-color: var(--color-error);
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 0.65rem;
+  font-weight: bold;
+  margin-left: 8px;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.price-highlight {
+  font-size: var(--text-lg);
+  color: var(--color-accent);
+}
+
+/* ── TOOLTIPS CSS-ONLY (Requisito 5 del PDF) ── */
+/* Técnica: Usamos el atributo data-tooltip del HTML y lo mostramos 
+   usando el pseudo-elemento ::after cuando se hace hover.
+*/
+.tooltip-trigger {
+  position: relative;
+  cursor: help;
+  display: inline-block;
+  margin-left: 4px;
+  color: var(--color-accent);
+  text-decoration: underline dotted;
+}
+
+.tooltip-trigger::after {
+  content: attr(data-tooltip); /* Toma el texto del atributo data-tooltip */
+  position: absolute;
+  bottom: 150%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background-color: var(--color-bg-dark);
+  color: #fff;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  font-size: var(--text-xs);
+  line-height: 1.4;
+  white-space: normal;
+  width: 220px;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-base);
+  z-index: 100;
+  box-shadow: var(--shadow-lg);
+  pointer-events: none;
+}
+
+/* Triangulito inferior del tooltip */
+.tooltip-trigger::before {
+  content: '';
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  border: 8px solid transparent;
+  border-top-color: var(--color-bg-dark);
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-base);
+  z-index: 100;
+}
+
+/* Mostrar tooltip al hacer hover */
+.tooltip-trigger:hover::after,
+.tooltip-trigger:hover::before {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── Lógica Responsiva (Requisito 2 del PDF) ── */
+@media (max-width: 900px) {
+  .prices-comparison-table thead {
+    display: none; /* Oculta cabecera en móvil */
+  }
+  
+  .prices-comparison-table tbody tr {
+    display: block;
+    margin-bottom: var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+  }
+  
+  .prices-comparison-table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: right;
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-4);
+  }
+  
+  .prices-comparison-table td:last-child {
+    border-bottom: none;
+  }
+  
+  /* Genera el título de la columna usando el atributo data-label */
+  .prices-comparison-table td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    text-align: left;
+    color: var(--color-text-muted);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+  }
+}

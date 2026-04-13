@@ -1,0 +1,352 @@
+/* ============================================================
+   WANDERLUST TURISMO — contacto.css
+   Estilos para el Formulario, Validación CSS y Modal.
+   ============================================================ */
+
+/* ── Encabezado de Página ── */
+.page-hero {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-inverse);
+  padding: var(--space-24) var(--space-6);
+  text-align: center;
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+  margin-bottom: var(--space-12);
+}
+
+.page-hero-title {
+  font-size: clamp(var(--text-3xl), 5vw, var(--text-5xl));
+  color: var(--color-text-inverse);
+  margin-bottom: var(--space-4);
+}
+
+/* ── LAYOUT PRINCIPAL (Grid Responsivo) ── */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* 1/3 para info, 2/3 para formulario */
+  gap: var(--space-12);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .contact-layout {
+    grid-template-columns: 1fr; /* Pasa a 1 columna en pantallas medianas/chicas */
+  }
+}
+
+/* ── COLUMNA IZQUIERDA: Info de contacto ── */
+.contact-info {
+  background: var(--color-surface);
+  padding: var(--space-8);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.contact-intro {
+  margin-bottom: var(--space-8);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-loose);
+}
+
+.contact-detail-item {
+  display: flex;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.contact-detail-icon {
+  font-size: 1.5rem;
+  background: var(--color-bg-alt);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.contact-detail-label {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 2px;
+}
+
+.contact-detail-value {
+  font-weight: var(--font-weight-medium);
+  font-size: var(--text-base);
+  color: var(--color-text-primary);
+  transition: color var(--transition-fast);
+}
+
+a.contact-detail-value:hover {
+  color: var(--color-accent);
+}
+
+/* Decoración visual de fondo */
+.contact-decoration {
+  position: absolute;
+  bottom: -40px;
+  right: -40px;
+  pointer-events: none;
+}
+
+/* ── COLUMNA DERECHA: Formulario y Floating Labels ── */
+.contact-form-wrapper {
+  background: var(--color-surface);
+  padding: var(--space-8);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6) var(--space-4);
+}
+
+.form-field--full {
+  grid-column: 1 / -1; /* Ocupa todo el ancho disponible */
+}
+
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr; /* Todo a 1 columna en móviles */
+  }
+}
+
+.form-field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estilos base de los inputs */
+.form-field input,
+.form-field textarea,
+.form-field select {
+  width: 100%;
+  padding: 1.5rem 1rem 0.5rem; /* Padding superior extra para dejar lugar al label */
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  font-family: inherit;
+  font-size: var(--text-base);
+  color: var(--color-text-primary);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  outline: none;
+}
+
+.form-field select {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 4px var(--color-accent-light);
+}
+
+/* ── MAGIA CSS: Floating Labels ── */
+.form-field label:not(.label-checkbox):not(.label-select):not(.label-date) {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  pointer-events: none;
+  transition: all var(--transition-fast);
+}
+
+/* El label sube y se achica cuando el input tiene foco o NO está vacío */
+.form-field input:focus ~ label,
+.form-field input:not(:placeholder-shown) ~ label,
+.form-field textarea:focus ~ label,
+.form-field textarea:not(:placeholder-shown) ~ label {
+  top: 0.3rem;
+  font-size: 0.75rem;
+  color: var(--color-accent);
+  font-weight: var(--font-weight-bold);
+}
+
+/* ── MAGIA CSS: Validación en Tiempo Real ── */
+.form-error {
+  display: none;
+  color: var(--color-error);
+  font-size: var(--text-xs);
+  margin-top: 4px;
+}
+
+.form-success {
+  display: none;
+  position: absolute;
+  right: 1rem;
+  top: 1.2rem;
+  color: var(--color-success);
+  font-weight: bold;
+}
+
+/* Usamos la clase .was-touched (que agrega JS al enviar) para evitar 
+  que el formulario se vea rojo antes de que el usuario haga algo.
+*/
+.was-touched:invalid {
+  border-color: var(--color-error);
+}
+.was-touched:invalid ~ .form-error {
+  display: block; /* Muestra el mensaje de error */
+}
+
+.was-touched:valid {
+  border-color: var(--color-success);
+}
+.was-touched:valid ~ .form-success {
+  display: block; /* Muestra la tilde de éxito */
+}
+
+/* Contador de caracteres del Textarea */
+.char-counter {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+/* Checkbox de privacidad */
+.form-field--checkbox {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: var(--space-4);
+}
+
+.form-field--checkbox input {
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.form-field--checkbox label {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-normal);
+  cursor: pointer;
+}
+
+.form-field--checkbox .form-error {
+  position: absolute;
+  bottom: -20px;
+  left: 32px;
+}
+
+.form-submit-wrapper {
+  margin-top: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.form-disclaimer {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+/* ── MODAL DE CONFIRMACIÓN ── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: var(--z-modal);
+  visibility: hidden;
+  opacity: 0;
+  transition: all var(--transition-base);
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  visibility: hidden;
+  opacity: 0;
+  z-index: calc(var(--z-modal) - 1);
+  transition: all var(--transition-base);
+}
+
+/* Clases activas para mostrar el modal */
+.modal-overlay.is-open,
+.modal-backdrop.is-open {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal {
+  background: var(--color-surface);
+  padding: var(--space-10);
+  border-radius: var(--radius-lg);
+  max-width: 450px;
+  width: 90%;
+  /* Animación de escala: arranca más chico y crece al abrirse */
+  transform: translateY(40px) scale(0.95);
+  transition: transform var(--transition-base);
+  text-align: center;
+  position: relative;
+  box-shadow: var(--shadow-xl);
+}
+
+.modal-overlay.is-open .modal {
+  transform: translateY(0) scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.modal-close:hover {
+  color: var(--color-error);
+  transform: scale(1.1);
+}
+
+.modal-icon {
+  font-size: 3.5rem;
+  margin-bottom: var(--space-4);
+}
+
+.modal-title {
+  font-size: var(--text-2xl);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.modal-desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-8);
+  line-height: var(--leading-loose);
+}
+
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}

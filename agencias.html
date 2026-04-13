@@ -8,7 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="css/agencias.css" />
 </head>
 
 <body class="page-agencias" data-theme="light">
@@ -23,7 +24,35 @@
         <ul class="nav-list" role="list">
           <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
           <li class="nav-item has-megamenu"><a href="destinos.html" class="nav-link" aria-haspopup="true" aria-expanded="false">Destinos <svg width="32" height="32" class="chevron" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></a><div class="megamenu" role="region"><div class="megamenu-inner megamenu-inner--simple"><div class="megamenu-col"><ul role="list"><li><a href="destinos.html" class="megamenu-link">Ver todos</a></li></ul></div></div></div></li>
-          <li class="nav-item has-megamenu"><a href="agencias.html" class="nav-link nav-link--active" aria-current="page" aria-haspopup="true" aria-expanded="false">Agencias <svg width="32" height="32" class="chevron" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></a><div class="megamenu" role="region"><div class="megamenu-inner megamenu-inner--simple"><div class="megamenu-col"><ul role="list"><li><a href="agencias.html" class="megamenu-link">Todas las Agencias</a></li><li><a href="agencias.html" class="megamenu-link">Premium</a></li></ul></div></div></div></li>
+          <li class="nav-item has-megamenu">
+  <a href="agencias.html" class="nav-link nav-link--active" aria-current="page" aria-haspopup="true" aria-expanded="false">
+    Agencias 
+    <svg class="chevron" viewBox="0 0 10 6" width="32" height="32" aria-hidden="true">
+      <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+    </svg>
+  </a>
+  <div class="megamenu" role="region" aria-label="Opciones de agencias">
+    <div class="megamenu-inner megamenu-inner--simple">
+      <div class="megamenu-col">
+        <h3 class="megamenu-heading">Explorar</h3>
+        <ul role="list">
+          <li><a href="agencias.html" class="megamenu-link">Todas las Agencias</a></li>
+          <li><a href="agencias.html" class="megamenu-link">Agencias Premium</a></li>
+          <li><a href="agencias.html" class="megamenu-link">Mejor Valoradas</a></li>
+          <li><a href="agencias.html" class="megamenu-link">Agencias Locales</a></li>
+        </ul>
+      </div>
+      <div class="megamenu-col">
+        <h3 class="megamenu-heading">Servicios</h3>
+        <ul role="list">
+          <li><a href="contacto.html" class="megamenu-link">Solicitar Cotización</a></li>
+          <li><a href="contacto.html" class="megamenu-link">Armar Paquete</a></li>
+          <li><a href="contacto.html" class="megamenu-link">Asesoramiento</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</li>
           <li class="nav-item has-megamenu"><a href="precios.html" class="nav-link" aria-haspopup="true" aria-expanded="false">Precios <svg width="32" height="32" class="chevron" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></a><div class="megamenu" role="region"><div class="megamenu-inner megamenu-inner--simple"><div class="megamenu-col"><ul role="list"><li><a href="precios.html" class="megamenu-link">Comparador</a></li></ul></div></div></div></li>
           <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
           <li class="nav-item"><a href="contacto.html" class="nav-link nav-link--cta">Contacto</a></li>
@@ -317,6 +346,6 @@
     <div class="footer-bottom"><div class="footer-bottom-inner"><p class="copyright">© <span id="current-year">2025</span> Wanderlust Turismo.</p></div></div>
   </footer>
 
-  <script src="js/main.js" defer></script>
+  <script src="js/index.js" defer></script>
 </body>
 </html>
