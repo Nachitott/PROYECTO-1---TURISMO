@@ -1,0 +1,89 @@
+------- DOCUMENTACION HTML --------
+
+Google Fonts: usamos dos tipografías distintivas.
+- "Playfair Display": serif clásica y elegante para títulos grandes.
+- "DM Sans": moderna, humanista, para texto corrido.
+Se cargan con preconnect para mejorar la velocidad.
+
+ARCHIVOS CSS VINCULADOS:
+- index.css: contiene las variables, el reseteo base (box model) y componentes compartidos (header, footer, botones).
+- destinos.css: hoja de estilos independiente, específica para esta página. Separa el CSS mejora el mantenimiento.
+
+Etiqueta <body>:
+- class="page-destinos": clase única por si necesitamos estilos que afecten solo a componentes globales dentro de esta página.
+- data-theme="light": atributo principal que lee el CSS y el JS para gestionar el Modo Oscuro/Claro mediante variables CSS.
+
+MEGA-MENÚ: navegación principal (Estructura compartida con Home).
+Usamos <nav> + <ul> que es la estructura semántica correcta para listas de navegación (accesible para lectores de pantalla).
+El mega-menú se despliega solo con CSS usando :hover y :focus-within, sin JavaScript.
+ÍTEM ACTIVO: Destinos
+- class="nav-link nav-link--active": marca visualmente en qué página estamos.
+- aria-current="page": informa a tecnologías asistivas (lectores de pantalla) que este es el enlace de la página actual.
+
+──────────────────────────────────────────────────────────
+SECCIÓN 1: PAGE HERO
+Encabezado interior. Es más compacto que el Hero del Home, pensado solo para dar título a la sección sin robar atención del contenido principal.
+Técnica CSS: clip-path para el recorte diagonal decorativo en el borde inferior.
+
+──────────────────────────────────────────────────────────
+SECCIÓN 2: GALERÍA Y SISTEMA DE FILTROS CSS-ONLY
+Técnica: "Checkbox/Radio Hack".
+Se utilizan input[type="radio"] ocultos con labels visibles.
+Al seleccionar un radio, el CSS usa el combinador ~ (hermano general) para mostrar/ocultar tarjetas con la clase correspondiente.
+
+INPUTS DE FILTRO (Lógica Oculta):
+- class="filter-input": el CSS los oculta visualmente (display: none).
+- Los inputs DEBEN estar ubicados en el HTML antes que la galería (.masonry-gallery) para que el selector de hermano (~) en CSS funcione.
+- id="filter-all", id="filter-cultural", etc.: Identificadores únicos que conectan con los <label>.
+
+BARRA DE FILTROS (Controles Visuales):
+- <label for="filter-cultural">...
+- Cada label actúa como el "botón" de la interfaz. Al hacer clic, activa el <input> oculto con el ID correspondiente.
+- El estilo "activo" (.filter-btn--active) se logra dinámicamente con CSS usando la pseudo-clase :checked del input asociado.
+- role="group": Agrupa lógicamente los botones para accesibilidad.
+
+GALERÍA MASONRY:
+Un "masonry layout" es una galería donde las imágenes mantienen su proporción original y se apilan como ladrillos (estilo Pinterest), en lugar de forzarlas a una cuadrícula rígida.
+Técnica CSS: Se logra utilizando 'column-count' y 'column-gap' sobre el contenedor .masonry-gallery, y 'break-inside: avoid' en las tarjetas.
+
+TARJETA DE DESTINO (dest-card):
+Estructura preparada para interactuar con los filtros:
+- class="cat-cultural cat-naturaleza": Una tarjeta puede tener múltiples categorías. El CSS decide si la muestra o la oculta basándose en estas clases cuando el input correspondiente está :checked.
+- img con loading="lazy": el navegador carga la imagen solo cuando está cerca del viewport (viewport = área visible de la pantalla).
+- .dest-card-overlay: Contenedor con fondo degradado que aparece en :hover usando transiciones CSS, mostrando el texto sobre la imagen.
+- span.dest-card-badge: Etiqueta visual flotante (posición absoluta).
+
+──────────────────────────────────────────────────────────
+SECCIÓN 3: TABLA DE PRECIOS RESPONSIVA
+Técnica CSS: En escritorio se ve como una tabla normal (<table>). En móvil, se transforma en bloques tipo tarjeta usando 'display: block' y pseudo-elementos.
+
+ESTRUCTURA DE TABLA:
+- <caption class="sr-only">: Proporciona contexto a lectores de pantalla sin mostrar el texto visualmente.
+- <thead>: Encabezados de columna. Se ocultarán completamente en móvil con CSS.
+
+FILAS RESPONSIVAS (Magia de datos):
+- <td data-label="Destino">: El atributo 'data-label' es fundamental. En pantallas pequeñas, el CSS de móvil (media query) convierte cada <td> en un bloque flex, e inyecta el valor del 'data-label' ("Destino") mediante el pseudo-elemento ::before.
+Esto simula que cada celda tiene su propio título de columna, evitando que el usuario deba recordar los encabezados ocultos.
+- .cat-pill: Pequeñas píldoras de color para identificar la categoría visualmente en la tabla.
+
+============================================================
+FOOTER: pie de página.
+Contiene: newsletter, redes sociales y mapa embebido.
+
+FORMULARIO NEWSLETTER:
+- action="#": en un sitio real apuntaría a un endpoint del servidor.
+- novalidate: desactivamos la validación nativa del navegador para hacer la nuestra con CSS (:valid/:invalid) en la página de contacto.
+- El input type="email" activa el teclado correcto en móviles.
+
+MAPA EMBEBIDO:
+OpenStreetMap via iframe. No requiere API Key.
+- loading="lazy": el iframe se carga solo cuando es visible.
+- title: accesibilidad (lectores de pantalla anuncian el contenido del iframe).
+
+============================================================
+JAVASCRIPT (js/index.js):
+Cargado con el atributo 'defer' al final del <body>. El script no bloquea el renderizado de la página.
+Se encarga únicamente de funcionalidades de estado global presentes en todas las páginas:
+1. Toggle modo oscuro (dark mode)
+2. Toggle menú móvil (hamburguesa)
+3. Año dinámico en copyright
