@@ -1,0 +1,56 @@
+------- DOCUMENTACIÓN TÉCNICA – BLOG.HTML --------
+
+1. CONFIGURACIÓN BASE Y METADATOS
+* Etiquetas <meta>: Se configuró una description SEO orientada a captar lectores ("Blog de turismo Wanderlust – artículos, consejos, guías...").
+* Google Fonts: Se emplean "Playfair Display" y "DM Sans" cargadas mediante <link rel="preconnect"> para garantizar un renderizado tipográfico rápido y sin parpadeos (FOUT).
+
+2. ARCHIVOS CSS VINCULADOS
+La estructura modular se mantiene:
+* index.css / styles.css: Archivos globales para componentes base y variables de tema.
+* blog.css: Hoja de estilos dedicada a la grilla asimétrica (estilo periódico), el sistema de filtrado de notas y la anidación de comentarios.
+
+3. ESTRUCTURA DEL <body> Y NAVEGACIÓN
+* Atributos: El <body> identifica la vista con class="page-blog" y controla el tema con data-theme="light".
+* Accesibilidad: El enlace "Blog" en el menú principal recibe la clase .nav-link--active y el atributo aria-current="page" para indicar a los lectores de pantalla la ubicación del usuario.
+
+──────────────────────────────────────────────────────────
+SECCIÓN 1: CABECERA EDITORIAL (MASTHEAD)
+A diferencia de otras páginas, el Blog no usa un "Hero" tradicional, sino un "Masthead" (.blog-masthead).
+* Diseño Visual: Se asemeja a la cabecera de un periódico tradicional impreso, con separadores visuales (.blog-masthead-rule) y jerarquía tipográfica marcada.
+* Semántica HTML: Se utiliza la etiqueta <time datetime="2025-04">, lo cual es una excelente práctica para que los motores de búsqueda y navegadores interpreten correctamente las fechas de publicación.
+
+──────────────────────────────────────────────────────────
+SECCIÓN 2: SISTEMA DE FILTRADO (CSS-ONLY)
+* Técnica "Radio Hack": Al igual que en la página de Destinos, se utilizan inputs de tipo radio ocultos (.filter-input) antes de la grilla de artículos.
+* Interfaz de Usuario: Las etiquetas <label> actúan como botones de categorías (Guías, Consejos, Naturaleza, etc.).
+* Funcionalidad: Mediante el pseudo-selector :checked y el combinador hermano (~), el CSS muestra u oculta las tarjetas de los artículos según coincidan o no con la clase de la categoría seleccionada (ej. .blog-cat-naturaleza).
+
+──────────────────────────────────────────────────────────
+SECCIÓN 3: LAYOUT "NEWSPAPER" (CSS GRID) Y SCROLL REVEAL
+Esta sección rompe con la tradicional grilla de cajas simétricas para darle un aspecto editorial más rico.
+
+Técnica A: CSS Grid Asimétrico
+* Contenedor: .newspaper-grid utiliza una cuadrícula fraccional.
+* Artículo Destacado: La clase .article-card--featured utiliza propiedades como 'grid-column: span' y 'grid-row: span' para ocupar más columnas y filas que el resto, obligando a los artículos secundarios a fluir visualmente a su alrededor, imitando la portada de un diario.
+
+Técnica B: Scroll Reveal (Animación al hacer scroll)
+* Preparación CSS: Todos los artículos tienen la clase .reveal, que los inicializa con opacity: 0 y transform: translateY(30px) (desplazados hacia abajo).
+* Ejecución (JS + CSS): El script index.js utiliza la API IntersectionObserver. Cuando el usuario hace scroll y el artículo entra al viewport, el JS le inyecta la clase .is-visible.
+* Transición: El CSS detecta la clase .is-visible y cambia la opacidad a 1 y el translateY a 0, creando una animación de aparición fluida y moderna.
+
+──────────────────────────────────────────────────────────
+SECCIÓN 4: AVATARES CSS-ONLY Y COMENTARIOS
+Para reducir el peso de la página y evitar cargar miniaturas de imágenes, los avatares se generan por código.
+
+Técnica A: Avatares Dinámicos sin Imágenes
+* HTML: Se define un contenedor vacío con el atributo personalizado data-initials="LP".
+* CSS: La clase .avatar dibuja un círculo perfecto con color de fondo. Luego, el pseudo-elemento ::after utiliza la propiedad 'content: attr(data-initials)' para extraer las iniciales (LP) y centrarlas dentro del círculo.
+
+Técnica B: Comentarios Anidados (Hilos)
+* Estructura: Se emplean listas ordenadas semánticas (<ol> y <li>).
+* Respuestas: Para simular hilos de conversación, las respuestas se envuelven en una lista anidada con la clase .comments-list--nested. El CSS aplica un margin-left y un border-left para crear el sangrado visual y la línea conectora tipica de foros o redes sociales.
+
+============================================================
+PIE DE PÁGINA Y SCRIPTS
+* Footer: Cierra la página de manera consistente con el resto de la web.
+* Script (index.js): Cargado mediante 'defer', activa la lógica del IntersectionObserver (Scroll Reveal), además de las funciones globales (Modo Oscuro, Menú).
