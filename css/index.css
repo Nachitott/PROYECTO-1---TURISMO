@@ -1127,21 +1127,59 @@ em {
   background: rgba(247, 244, 238, 0.15);
 }
 
+/* 1. Definimos la variable numérica para que CSS la pueda animar */
+@property --num {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
+/* 2. Animación del conteo */
+@keyframes conteo {
+  from { --num: 0; }
+  to { --num: var(--final-value); }
+}
+
+/* 3. Animación de efecto 'Pop' (Agrandar y volver) */
+@keyframes countPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
 .stat-number {
   font-family: var(--font-display);
   font-size: clamp(var(--text-4xl), 6vw, var(--text-5xl));
   font-weight: var(--font-weight-bold);
-  color: var(--color-accent-light);
-  line-height: 1;
-  margin-bottom: var(--space-3);
-  /* transition para la animación del número */
-  transition: all var(--transition-fast);
+  color: transparent; /* Ocultamos el "0" del HTML */
+  position: relative;
+  display: inline-block;
+  
+  /* Aplicamos ambas animaciones: conteo y pop */
+  animation: 
+    conteo 3s ease-out forwards, 
+    countPop 0.4s ease-in-out infinite; /* El pop se repite mientras cuenta */
+  
+  counter-reset: variable var(--num);
 }
 
-/* Cuando el JS activa la animación */
-.stat-number.is-counting {
-  animation: countPop 0.3s var(--transition-bounce);
+/* El número real se muestra aquí */
+.stat-number::before {
+  content: counter(variable);
+  color: var(--color-accent-light);
+  position: relative; /* Para que conviva bien con el ::after */
 }
+
+/* El sufijo (+ o %) se muestra aquí */
+.stat-number::after {
+  content: attr(data-suffix);
+  color: var(--color-accent-light);
+  font-size: 0.6em; /* Un poco más pequeño para que se vea mejor */
+  vertical-align: middle;
+  margin-left: 2px;
+}
+
+
 
 .stat-label {
   font-size: var(--text-sm);

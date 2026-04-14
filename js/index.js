@@ -150,40 +150,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  /* ──────────────────────────────────────────────────────────
-     5. CONTADOR ANIMADO
-     ──────────────────────────────────────────────────────────
-     Técnica:
-     - IntersectionObserver: activa el contador solo cuando
-       el elemento entra al viewport (área visible).
-     - requestAnimationFrame: anima el número frame a frame,
-       sincronizado con el ciclo de render del navegador (60fps).
-     - Easing: función cubic que suaviza la animación.
-     
-     Los elementos .stat-number tienen:
-       data-target="500" → número final
-       data-suffix="+"   → símbolo después del número
-     ────────────────────────────────────────────────────────── */
-  const counters = document.querySelectorAll('.stat-number[data-target]');
-
-  if (counters.length) {
-    const counterObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            animateCounter(entry.target);
-            // Dejar de observar una vez que el contador arrancó
-            counterObserver.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.5 // Se activa cuando el 50% del elemento es visible
-      }
-    );
-
-    counters.forEach(counter => counterObserver.observe(counter));
-  }
 
   /**
    * Anima un elemento contando desde 0 hasta data-target.
