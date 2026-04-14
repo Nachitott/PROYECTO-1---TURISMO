@@ -1,0 +1,63 @@
+------- DOCUMENTACIÓN TÉCNICA – CONTACTO.HTML --------
+
+1. CONFIGURACIÓN BASE Y METADATOS
+* Etiquetas <meta>: Incluye una etiqueta description enfocada en invitar a la acción ("Contactá a Wanderlust Turismo..."), vital para los fragmentos que muestra Google en los resultados de búsqueda.
+* Google Fonts: Se mantienen las tipografías "Playfair Display" y "DM Sans" con <link rel="preconnect"> para optimizar la carga.
+
+2. ARCHIVOS CSS VINCULADOS
+La arquitectura sigue siendo modular:
+* styles.css / index.css: Para mantener la coherencia del diseño global y los componentes compartidos.
+* contacto.css: Archivo exclusivo para gestionar la lógica del formulario interactivo, el Grid responsivo de la página y la ventana modal.
+
+3. ESTRUCTURA DEL <body> Y NAVEGACIÓN
+* Clases y Atributos: El <body> lleva class="page-contacto" y data-theme="light".
+* Accesibilidad y UX en el Menú: 
+  - El enlace de Contacto posee las clases .nav-link--active (feedback visual) y .nav-link--cta (Call to Action, para destacarlo visualmente como botón).
+  - Incluye aria-current="page" para tecnologías asistivas.
+
+──────────────────────────────────────────────────────────
+SECCIÓN 1: PAGE HERO (Encabezado)
+* Diseño Introductorio: Se utiliza el .page-hero compacto para dar la bienvenida y establecer una expectativa clara al usuario ("te respondemos en menos de 24 horas").
+
+──────────────────────────────────────────────────────────
+SECCIÓN 2: LAYOUT DE CONTACTO Y FORMULARIO AVANZADO
+La sección principal utiliza CSS Grid (.contact-layout) para dividir la pantalla en dos columnas en escritorio y apilarlas en una sola en móviles.
+
+Columna Izquierda (Información):
+* Uso de la etiqueta semántica <address> para la dirección física.
+* Elementos visuales decorativos integrados directamente como SVG en el HTML, lo que evita peticiones HTTP adicionales.
+* Enlaces accionables: href="mailto:..." y href="tel:..." para permitir a los usuarios de móviles llamar o enviar emails con un solo clic.
+
+Columna Derecha (Formulario Inteligente):
+El formulario utiliza el atributo 'novalidate' para desactivar los globos de error nativos del navegador, permitiendo crear una experiencia de usuario (UX) personalizada y más elegante con CSS.
+
+Técnica A: Floating Labels (Etiquetas Flotantes sin JS)
+* En lugar de usar placeholders tradicionales que desaparecen, se usa la técnica de etiquetas flotantes.
+* HTML: Los inputs tienen el atributo placeholder=" " (un espacio en blanco).
+* CSS: El <label> se posiciona de forma absoluta sobre el input. Cuando el usuario hace clic (:focus) o cuando el input deja de mostrar el placeholder porque tiene texto (:not(:placeholder-shown)), el CSS desliza el label hacia arriba y lo achica, manteniendo siempre visible qué dato se está pidiendo.
+
+Técnica B: Validación CSS en Tiempo Real (Feedback visual)
+* HTML: Los campos utilizan atributos nativos como required, minlength, maxlength y pattern (expresiones regulares, como en el teléfono).
+* CSS: Las pseudo-clases :valid e :invalid cambian los colores de los bordes (verde/rojo).
+* UX Trick (.was-touched): Para evitar que el formulario se pinte de rojo apenas el usuario entra a la página, los estilos de error/éxito están condicionados a una clase ".was-touched". Esta clase se inyecta con un mínimo de JS cuando el usuario intenta enviar o interactúa con el campo.
+
+Técnica C: Accesibilidad en Formularios (A11y)
+* aria-required="true": Comunica a los lectores de pantalla que el campo es obligatorio.
+* aria-describedby: Conecta el input con su respectivo mensaje de error (ej. id="nombre-error").
+* aria-live="polite": Hace que los lectores de pantalla anuncien automáticamente si aparece un mensaje de error o si el contador de caracteres cambia, sin interrumpir bruscamente al usuario.
+
+Técnica D: Spinner de Carga
+* El botón de envío incluye un <span> vacío (.spinner). Cuando el formulario se envía, el CSS activa un @keyframes que lo hace rotar 360 grados de forma infinita, dando feedback visual de "Procesando" al usuario.
+
+──────────────────────────────────────────────────────────
+SECCIÓN 3: VENTANA MODAL DE CONFIRMACIÓN
+En lugar de redirigir a una página de "Gracias" separada, se implementó un Modal (diálogo emergente) para confirmar el envío.
+
+* CSS Oculto por defecto: El modal arranca con opacity: 0, visibility: hidden y transform: scale(0.95). 
+* Activación: Al enviar el form correctamente, se le agrega la clase .is-open al overlay, lo que activa transiciones CSS fluidas (aparece y hace zoom in).
+* Accesibilidad: Usa role="dialog", aria-modal="true" (indica que el contenido del fondo está desactivado), aria-labelledby y tabindex="-1" para que el foco del teclado se mantenga dentro de la ventana modal.
+
+============================================================
+PIE DE PÁGINA Y SCRIPTS
+* Footer: Footer global para la navegación del sitio.
+* Script (js/index.js): Gestiona la clase .was-touched del formulario, la aparición del modal, el modo oscuro y el menú móvil, cargando de forma asíncrona con el atributo 'defer'.

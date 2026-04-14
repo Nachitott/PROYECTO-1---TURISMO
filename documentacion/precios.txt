@@ -1,0 +1,53 @@
+------- DOCUMENTACIÓN TÉCNICA – PRECIOS.HTML --------
+
+1. CONFIGURACIÓN BASE Y METADATOS
+* Etiquetas <meta>: Se incluye una etiqueta description ("Compará precios de destinos turísticos...") fundamental para el SEO (Search Engine Optimization), informando a los buscadores de qué trata la página exactamente.
+* Google Fonts: Se mantienen "Playfair Display" (títulos) y "DM Sans" (cuerpo de texto). Se utiliza <link rel="preconnect"> para resolver los DNS de Google anticipadamente, mejorando la velocidad de carga de la página (Performance).
+
+2. ARCHIVOS CSS VINCULADOS
+La arquitectura de estilos se mantiene modular para evitar que el código se vuelva inmanejable:
+* styles.css / index.css: Contienen el "reset" global, las variables de color/espaciado y los componentes compartidos (header, footer, botones).
+* precios.css: Archivo dedicado de forma exclusiva a la lógica compleja de la tabla interactiva y los tooltips flotantes.
+
+3. ESTRUCTURA DEL <body> Y NAVEGACIÓN
+* Clases y Atributos: El <body> lleva class="page-precios" (útil para aislar estilos si fuera necesario en el futuro) y data-theme="light", el cual actúa como el "interruptor" principal para el Modo Oscuro/Claro gestionado por el JS.
+* Mega-Menú Accesible:
+  - Se utiliza la clase .nav-link--active en el ítem "Precios" para dar feedback visual al usuario de su ubicación actual.
+  - Se incluye el atributo aria-current="page", lo cual es una excelente práctica de Accesibilidad (A11y) para que los lectores de pantalla anuncien que esa es la página activa.
+
+──────────────────────────────────────────────────────────
+SECCIÓN 1: PAGE HERO (Encabezado)
+* Diseño Compacto: A diferencia de la página de inicio, se utiliza un "Hero" más pequeño (.page-hero). Su propósito es puramente introductorio ("Comparador de Precios") para no empujar el contenido principal (la tabla) por debajo del primer vistazo del usuario (below the fold).
+
+──────────────────────────────────────────────────────────
+SECCIÓN 2: LA TABLA COMPARATIVA (El núcleo de la página)
+Esta sección está envuelta en un contenedor .table-responsive-wrapper con tabindex="0" y role="region", garantizando que si la tabla requiere scroll horizontal en algún dispositivo, se pueda navegar usando el teclado.
+
+Técnica A: Accesibilidad en la Tabla
+* <caption> oculto: Se utiliza <caption class="sr-only">. Esto proporciona una descripción de la tabla a los usuarios no videntes, pero la clase .sr-only la oculta visualmente para no romper el diseño.
+* Atributos scope="col": Aplicados en el <thead> para relacionar explícitamente cada encabezado con sus datos correspondientes.
+
+Técnica B: Tooltips CSS-Only (Sin JavaScript)
+En los encabezados de la tabla y en la columna de "Mejor época", se implementó un sistema de ayuda emergente (Tooltips) usando puramente HTML y CSS.
+* HTML: Se envuelve el ícono "ℹ️" en un <span> con la clase .tooltip-trigger. La magia ocurre gracias al atributo personalizado data-tooltip="..." que guarda el texto explicativo. Además, se suma un aria-label para accesibilidad.
+* CSS Lógico: El CSS lee el contenido de ese atributo usando content: attr(data-tooltip) en un pseudo-elemento (::after). Este cuadro está oculto (opacity: 0, visibility: hidden) y solo aparece mediante una transición suave cuando el usuario hace :hover sobre el ícono.
+
+Técnica C: Jerarquía Visual y Microinteracciones
+* Hover en Filas (tr:hover): Configurado en el CSS para que toda la fila se resalte al pasar el cursor, ayudando al ojo del usuario a no perderse en la lectura horizontal de los datos.
+* Fila Destacada (.row-featured): El destino "Perito Moreno" tiene una clase especial en el <tr> que le aplica un fondo distintivo. Además, se le suma el elemento .row-badge ("🔥 Más popular") para guiar la decisión de compra del usuario hacia el producto estrella.
+* Indicadores Booleanos: Se utilizaron clases semánticas .bool-yes (verde) y .bool-no (rojo) para escaneos visuales rápidos de qué incluye o no cada paquete.
+
+──────────────────────────────────────────────────────────
+SECCIÓN 3: COMPORTAMIENTO RESPONSIVO DE LOS DATOS (Móvil)
+Las tablas HTML tradicionales se rompen en pantallas de celulares. Para solucionarlo sin usar barras de desplazamiento horizontales molestas, se implementó el patrón de "Tabla a Tarjetas".
+* El atributo data-label: A cada celda <td> se le asignó un data-label (ej: data-label="Precio base").
+* Media Query CSS: En pantallas chicas, el <thead> desaparece. Cada <tr> se convierte en un bloque vertical (como una tarjeta). El CSS inyecta el nombre de la columna a la izquierda de cada dato utilizando el pseudo-elemento ::before con content: attr(data-label).
+
+──────────────────────────────────────────────────────────
+SECCIÓN 4: CALL TO ACTION (Llamada a la acción)
+* Debajo de la tabla se incluye una sección .cta-section. Esto es una decisión estratégica de UX/UI: si el usuario llega al final de la tabla y no encuentra lo que busca, se le ofrece inmediatamente un botón (.btn--primary) para solicitar una cotización personalizada, evitando que abandone el sitio.
+
+============================================================
+PIE DE PÁGINA Y SCRIPTS
+* Footer: Compartido con el resto del sitio, mantiene la consistencia de navegación secundaria y branding.
+* Script (js/index.js): Cargado con el atributo defer justo antes de cerrar el <body>. Esto asegura que el HTML se renderice completamente antes de ejecutar la lógica del Menú Hamburguesa y el Modo Oscuro, evitando bloqueos en la carga (render-blocking).

@@ -1,0 +1,50 @@
+------- DOCUMENTACIÓN TÉCNICA – AGENCIAS.HTML --------
+
+1. CONFIGURACIÓN BASE Y METADATOS
+* Etiquetas <meta>: Se definió una description clara ("Conocé nuestras agencias de turismo verificadas...") que ayuda al posicionamiento SEO y atrae al usuario en los motores de búsqueda.
+* Google Fonts: Carga optimizada mediante <link rel="preconnect"> de "Playfair Display" y "DM Sans" para mantener la consistencia del sistema de diseño.
+
+2. ARCHIVOS CSS VINCULADOS
+* index.css: Provee la base estructural, variables de Modo Oscuro/Claro y el reseteo visual.
+* agencias.css: Un archivo dedicado específicamente a las matemáticas espaciales (3D) y a las micro-interacciones de esta página, manteniendo el código ordenado y escalable.
+
+3. ESTRUCTURA DEL <body> Y NAVEGACIÓN
+* Clases y Atributos: El <body> utiliza class="page-agencias" para encapsular estilos y data-theme="light" para el manejo de temas.
+* Mega-Menú Accesible: 
+  - El enlace principal de Agencias tiene la clase .nav-link--active para resaltar visualmente.
+  - El atributo aria-current="page" informa a los lectores de pantalla la ubicación exacta del usuario.
+  - El submenú desplegable se maneja íntegramente con CSS (:hover, :focus-within), evitando código JS innecesario.
+
+──────────────────────────────────────────────────────────
+SECCIÓN 1: PAGE HERO (Encabezado)
+* Diseño Modular: Se reutiliza el componente .page-hero que establece una jerarquía visual clara. Informa de qué trata la sección ("Nuestras Agencias") sin ocupar el 100% del alto de la pantalla.
+
+──────────────────────────────────────────────────────────
+SECCIÓN 2: GRILLA DE AGENCIAS Y TARJETAS 3D (El núcleo interactivo)
+Esta sección presenta un catálogo de agencias utilizando un diseño de grilla (CSS Grid) y tarjetas interactivas que giran en el espacio 3D, logrado 100% con CSS.
+
+Técnica A: Accesibilidad de la Grilla (A11y)
+* Contenedor Principal: La grilla (.agencies-grid) tiene role="list".
+* Elementos (Tarjetas): Cada tarjeta (.flip-card) actúa como un elemento de lista (role="listitem").
+* Navegación por Teclado: Se le agregó tabindex="0" a cada tarjeta para que los usuarios que no usan mouse puedan enfocar y activar el giro 3D usando la tecla Tab. Además, poseen un aria-label descriptivo (ej. "Agencia Andes Explorer – ver detalles").
+
+Técnica B: Flip Cards (Rotación 3D en CSS)
+* El Escenario: Al contenedor principal (.flip-card) se le aplica la propiedad 'perspective: 1000px'. Esto le dice al navegador que renderice los elementos hijos con profundidad tridimensional.
+* El Eje de Giro: El contenedor interno (.flip-card-inner) utiliza 'transform-style: preserve-3d'. Al hacer :hover o recibir foco (:focus-within), rota sobre el eje Y usando 'transform: rotateY(180deg)'.
+* Las Caras: Se construyeron dos caras superpuestas (.flip-card-front y .flip-card-back). La cara trasera ya está girada 180 grados por defecto. 
+* El Truco: Se utiliza 'backface-visibility: hidden' para que la cara que queda "de espaldas" al usuario se vuelva transparente y no se mezcle con la otra.
+
+Técnica C: Logos Generados con CSS (Performance)
+* En lugar de cargar múltiples imágenes (JPG/PNG) para los logos de las agencias, se utilizó la clase .agency-logo-placeholder. 
+* Este elemento crea círculos perfectos usando CSS puro (border-radius: 50%) y colores extraídos de las variables (ej: .agency-logo-placeholder--b). Reduce drásticamente el peso de la página y las peticiones al servidor.
+
+Técnica D: Sistema de Calificación (Estrellas CSS-Only)
+* Jerarquía Visual: Se utilizan spans con el símbolo tipográfico de la estrella (★).
+* Medias Estrellas: Para lograr calificaciones precisas (como 4.5), la clase .star--half utiliza un 'background: linear-gradient' recortado con '-webkit-background-clip: text', lo que pinta la mitad de la estrella de dorado y la otra mitad de gris transparente.
+* Accesibilidad: Las estrellas puramente visuales se ocultan con aria-hidden="true", y el contenedor padre informa el valor real con aria-label="Calificación: 4.5 de 5 estrellas".
+* Micro-interacción: En el CSS (agencias.css), al hacer hover en la tarjeta, las estrellas realizan un pequeño "salto" usando transform: scale() y transition-delay escalonado para un efecto orgánico.
+
+============================================================
+PIE DE PÁGINA Y SCRIPTS
+* Footer: Cierra la página con la navegación secundaria y la información legal compartida de la marca.
+* Script (js/index.js): Incluido al final mediante 'defer' para no entorpecer el tiempo de renderizado de la pintura inicial (First Contentful Paint), encargado del menú móvil y el Modo Oscuro global.
