@@ -13,6 +13,14 @@
   margin-bottom: var(--space-12);
 }
 
+.page-hero-title {
+  font-size: clamp(var(--text-4xl), 7vw, var(--text-6xl));
+  font-weight: var(--font-weight-bold);
+  line-height: var(--leading-tight);
+  margin-bottom: var(--space-6);
+  text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+
 /* ── TABLA COMPARATIVA AVANZADA ── */
 .prices-comparison-table {
   width: 100%;
@@ -83,7 +91,7 @@
    usando el pseudo-elemento ::after cuando se hace hover.
 */
 .tooltip-trigger {
-  position: relative;
+  position: absolute;
   cursor: help;
   display: inline-block;
   margin-left: 4px;
