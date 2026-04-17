@@ -11,6 +11,7 @@
   text-align: center;
   clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
   margin-bottom: var(--space-12);
+  font-size: clamp(var(--text-4xl), 7vw, var(--text-6xl));
 }
 
 .page-hero-title {

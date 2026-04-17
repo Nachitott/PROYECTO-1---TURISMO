@@ -156,7 +156,7 @@ a.contact-detail-value:hover {
 
 /* ── MAGIA CSS: Floating Labels ── */
 .form-field label:not(.label-checkbox):not(.label-select):not(.label-date) {
-  position: absolute;
+  position: relative;
   top: 1rem;
   left: 1rem;
   font-size: var(--text-base);

@@ -1312,7 +1312,6 @@ em {
 
 /* Comillas decorativas con pseudo-elemento */
 .testimonial-text::before {
-  content: '\201C'; /* Comilla curva de apertura */
   position: absolute;
   top: -var(--space-4);
   left: -var(--space-4);
